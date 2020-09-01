@@ -1,0 +1,13 @@
+.mainDisplay {
+  border: 3px solid black;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: black;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.container {
+  margin: 30px;
+}
