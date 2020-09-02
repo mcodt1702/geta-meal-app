@@ -1,3 +1,8 @@
 footer {
   background-color: rgb(68, 67, 67);
+  height: 100%;
+}
+
+footer h2 {
+  margin: 0px;
 }

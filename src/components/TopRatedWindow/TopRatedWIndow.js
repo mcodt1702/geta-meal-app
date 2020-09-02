@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./TopRated.css";
+
+import "./TopRatedWindow.css";
+import data from "../../data/data";
 
 export default class TopRated extends Component {
   render() {
     return (
-      <div>
-        <h1>toprated</h1>
+      <div id="topbox">
+        <h2>TOP RATED</h2>
       </div>
     );
   }

@@ -1,0 +1,14 @@
+#topPage h2 {
+  text-align: center;
+  color: black;
+}
+
+#topPage {
+  background-color: aliceblue;
+}
+
+#topPage ul {
+  margin: 20px;
+  text-align: center;
+  list-style-type: none;
+}

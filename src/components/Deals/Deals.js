@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 import "./Deals.css";
+import data from "../../../src/data/data";
 
 export default class Deals extends Component {
   render() {
     return (
-      <div>
-        <h1>Deals</h1>
+      <div id="topbox">
+        <h2>Deals</h2>
       </div>
     );
   }

@@ -4,6 +4,7 @@ menu-item {
   user-select: none;
   cursor: pointer;
   border: none;
+  height: 20vh;
 }
 .menu-item-wrapper.active {
   border: 1px blue solid;

@@ -2,20 +2,33 @@
   display: flex;
   justify-content: space-around;
   background-color: black;
+  height: 20vh;
+  align-items: center;
+  font-size: medium;
 }
 
-.hambu {
-  display: flex;
-  flex-direction: column;
+header a {
+  color: white;
+  font-size: medium;
+  text-decoration: none;
 }
-
-.hambu img {
-  height: 50px;
-  width: 50px;
-}
-a {
-  color: blue;
-}
-a:hover {
+header a:hover {
   color: red;
+}
+
+.logo {
+  font-family: "Audiowide", cursive;
+  font-size: 20px;
+}
+@media screen and (min-width: 770px) {
+  .logo {
+    font-family: "Audiowide", cursive;
+    font-size: 60px;
+  }
+
+  header a {
+    color: white;
+    font-size: xx-large;
+    text-decoration: none;
+  }
 }
