@@ -1,4 +1,17 @@
-.LoginPage {
+.regButton {
+  margin: 10px;
+}
+
+.registrationForm {
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  height: 50vh;
+  align-items: center;
+}
+
+#userform {
   width: 280px;
   align-items: center;
   margin-right: auto;
@@ -6,7 +19,7 @@
 }
 
 @media screen and (min-width: 770px) {
-  .LoginPage {
+  #userform {
     width: 400px;
     align-items: center;
     margin-left: 37%;

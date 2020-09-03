@@ -3,7 +3,7 @@ import config from "../config";
 
 const GetamealApiService = {
   getRestaurants() {
-    return fetch(`${config.API_ENDPOINT}/articles`, {
+    return fetch(`${config.API_ENDPOINT}/restaurants`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()

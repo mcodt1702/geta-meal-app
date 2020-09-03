@@ -31,4 +31,8 @@ header a:hover {
     font-size: xx-large;
     text-decoration: none;
   }
+
+  .Header__not-logged-in {
+    color: white;
+  }
 }

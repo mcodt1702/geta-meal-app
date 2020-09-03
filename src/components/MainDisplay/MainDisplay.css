@@ -7,13 +7,13 @@
 }
 
 .container2 {
-  background-image: url("../../images/pizza.jpg");
+  background-image: url("/images/pizza.jpg");
   flex-basis: 50%;
   background-size: cover;
 }
 
 .container1 {
-  background-image: url("../../images/pasta.jpg");
+  background-image: url("/images/pasta.jpg");
   flex-basis: 50%;
   align-items: center;
   background-size: cover;

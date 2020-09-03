@@ -4,8 +4,6 @@ import "./Header.css";
 import TokenService from "../../services/token-service";
 import { Hyph } from "../../utilities/utilities";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 export default class Header extends React.Component {
   handleLogoutClick = () => {};
 
@@ -22,7 +20,7 @@ export default class Header extends React.Component {
   renderLoginLink() {
     return (
       <div className="Header__not-logged-in">
-        <Link to="/register">Register</Link>
+        <Link to="/registration">Register</Link>
         {<Hyph />}
         <Link to="/login">Log in</Link>
       </div>
@@ -33,7 +31,7 @@ export default class Header extends React.Component {
     return (
       <header className="headerstyling">
         <div className="hambu">
-          <a id="nav-toggle" href="#">
+          <a id="nav-toggle" href="./menu">
             &#9776;
           </a>
         </div>

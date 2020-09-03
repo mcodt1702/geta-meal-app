@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import "./Deals.css";
-import data from "../../../src/data/data";
 
 export default class Deals extends Component {
   render() {

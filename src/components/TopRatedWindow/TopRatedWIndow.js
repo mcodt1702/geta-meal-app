@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import "./TopRatedWindow.css";
-import data from "../../data/data";
 
 export default class TopRated extends Component {
   render() {

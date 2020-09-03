@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LoginForm from "../components/Login/Login";
+import Login from "../components/Login/Login";
 import { Section } from "../utilities/utilities";
 
 export default class LoginPage extends Component {
@@ -20,7 +20,7 @@ export default class LoginPage extends Component {
     return (
       <Section className="LoginPage">
         <h2>Login</h2>
-        <LoginForm onLoginSuccess={this.handleLoginSuccess} />
+        <Login onLoginSuccess={this.handleLoginSuccess} />
       </Section>
     );
   }
