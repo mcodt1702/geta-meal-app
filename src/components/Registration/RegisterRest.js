@@ -29,7 +29,10 @@ export default class renderUser extends React.Component {
   };
   render() {
     return (
-      <form form id="userform">
+      <form
+        onSubmit={(e) => this.context.createRestaurant(e, this.props.history)}
+        id="userform"
+      >
         <div className="name">
           <label htmlFor="RegistrationForm__full_name">
             Full name <Required />
@@ -97,7 +100,6 @@ export default class renderUser extends React.Component {
           <select name="type" type="text" required id="RegistrationForm__type">
             <option value="American">American</option>
             <option value="Chinese">Chinese</option>
-
             <option value="French">French</option>
             <option value="Fast Food">Fast Food</option>
             <option value="Indian">Indian</option>

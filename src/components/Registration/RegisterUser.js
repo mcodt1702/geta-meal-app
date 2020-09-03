@@ -11,9 +11,9 @@ export default class renderUser extends React.Component {
 
   state = { error: null };
 
-  handleSubmitUser = (ev) => {
-    ev.preventDefault();
-    const { name, address, zip, email, password } = ev.target;
+  handleSubmitUser = (e) => {
+    e.preventDefault();
+    const { name, address, zip, email, password } = e.target;
 
     console.log("registration form submitted");
     console.log({ name, address, zip, email, password });
@@ -27,7 +27,10 @@ export default class renderUser extends React.Component {
   };
   render() {
     return (
-      <form id="userform">
+      <form
+        id="userform"
+        onSubmit={(e) => this.context.createUser(e, this.props.history)}
+      >
         <div className="name">
           <label htmlFor="RegistrationForm__full_name">
             Full name <Required />

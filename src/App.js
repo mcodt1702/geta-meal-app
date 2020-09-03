@@ -13,6 +13,69 @@ import LoginPage from "./routes/LoginPage";
 
 class App extends Component {
   state = {
+    users: [],
+    restaurant: [],
+    menu: [],
+
+    createUser: (e, history) => {
+      e.preventDefault();
+
+      let newUser = {
+        name: e.target.name.value,
+        address: e.target.address.value,
+        zip: e.target.zip.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      };
+      console.log(newUser);
+      this.setState(
+        {
+          users: [...this.state.users, newUser],
+        },
+        // () => {
+        //   fetch("http://localhost:9090/users", {
+        //     method: "post",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(newUser),
+        //   }).then((res) => res.json());
+        // },
+
+        () => {
+          history.push("/");
+        }
+      );
+    },
+
+    createRestaurant: (e, history) => {
+      e.preventDefault();
+
+      let newRestaurant = {
+        name: e.target.name.value,
+        address: e.target.address.value,
+        zip: e.target.zip.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        type: e.target.type.value,
+      };
+      console.log(newRestaurant);
+      this.setState(
+        {
+          restaurant: [...this.state.restaurant, newRestaurant],
+        },
+        // () => {
+        //   fetch("http://localhost:9090/users", {
+        //     method: "post",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(newUser),
+        //   }).then((res) => res.json());
+        // },
+
+        () => {
+          history.push("/");
+        }
+      );
+    },
+
     handleRegistrationSuccess: (user) => {
       const { history } = this.props;
       history.push("/login");
