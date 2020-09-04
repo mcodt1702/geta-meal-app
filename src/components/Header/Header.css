@@ -30,9 +30,11 @@ header a:hover {
     color: white;
     font-size: xx-large;
     text-decoration: none;
+    margin: 20px;
   }
 
-  .Header__not-logged-in {
+  .Header__not-logged-in,
+  .Header__logged-in {
     color: white;
   }
 }

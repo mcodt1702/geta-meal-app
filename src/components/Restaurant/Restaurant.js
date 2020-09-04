@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import Context from "../../Context";
-import "./TopPage.css";
 
-export default class TopPage extends Component {
+export default class Restaurant extends Component {
   static contextType = Context;
   render() {
     return (
-      <div id="topPage">
-        <h2>TOP RATED</h2>
+      <div id="rest">
+        <h2>{this.context.restaurant.name} Menu</h2>
         <ul>
-          {this.context.restaurant.map((rest) => (
+          {this.context.menu.map((rest) => (
             <li key={rest.id}>
               <div className="prov">
                 <ul>

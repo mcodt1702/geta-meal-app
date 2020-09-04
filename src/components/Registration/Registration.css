@@ -25,4 +25,13 @@
     margin-left: 37%;
     margin-right: auto;
   }
+
+  .type {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+  #egistrationForm__type {
+    font-size: xx-large;
+  }
 }

@@ -17,3 +17,25 @@ menu-item {
   padding: 20px;
   cursor: pointer;
 }
+
+#menu-outer {
+  height: 84px;
+}
+
+#horizontal-list a {
+  cursor: pointer;
+}
+.table {
+  display: table; /* Allow the centering to work */
+  margin: 0 auto;
+}
+
+ul#horizontal-list {
+  min-width: 696px;
+  list-style: none;
+  padding-top: 20px;
+}
+ul#horizontal-list li {
+  display: inline;
+  margin: 20px;
+}

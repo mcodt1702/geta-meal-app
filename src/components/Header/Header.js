@@ -13,6 +13,8 @@ export default class Header extends React.Component {
         <Link onClick={this.handleLogoutClick} to="/">
           Logout
         </Link>
+        {<Hyph />}
+        <Link to="/restaurant/dashboard">Account</Link>
       </div>
     );
   }

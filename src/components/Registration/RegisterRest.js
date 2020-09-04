@@ -2,31 +2,79 @@ import React from "react";
 import { Button, Input, Required } from "../../utilities/utilities";
 import "./Registration.css";
 import Context from "../../Context";
+import ValidationError from "./../../utilities/validationError";
 
 export default class renderUser extends React.Component {
-  static defaultProps = {
-    onRegistrationSuccess: () => {},
-  };
   static contextType = Context;
 
-  state = { error: null };
+  constructor() {
+    super();
 
-  handleSubmitUser = (ev) => {
-    ev.preventDefault();
-    const { name, address, zip, phone, email, password, type } = ev.target;
+    this.state = {
+      name: { value: "", touched: false },
 
-    console.log("registration form submitted");
-    console.log({ name, address, zip, phone, email, password, type });
+      email: { value: "", touched: false },
 
-    name.value = "";
-    address.value = "";
-    zip.value = "";
-    phone.value = "";
-    email.value = "";
-    password.value = "";
-    type.value = "";
-    this.context.onRegistrationSuccess();
-  };
+      password: { value: "", touched: false },
+
+      phone: { value: "", touched: false },
+    };
+  }
+
+  nameUpdate(name) {
+    this.setState({ name: { value: name, touched: true } });
+  }
+  validateName() {
+    const name = this.state.name.value.trim();
+    if (name.length === 0) {
+      return "Name is required";
+    } else if (name.length < 4) {
+      return "You need at least 3 characters";
+    }
+  }
+  emailUpdate(email) {
+    this.setState({ email: { value: email, touched: true } });
+  }
+  validateEmail() {
+    const email = this.state.email.value.trim();
+    if (email.length === 0) {
+      return "Email is required";
+    } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      return true;
+    }
+    return "You have entered an invalid email address!";
+  }
+
+  passwordUpdate(password) {
+    this.setState({ password: { value: password, touched: true } });
+  }
+
+  validatePassword() {
+    const password = this.state.password.value.trim();
+    if (password.length === 0) {
+      return "Password is required";
+    } else if (/^[A-Za-z]\w{7,14}$/.test(password)) {
+      return true;
+    }
+    return "Use a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter!       ";
+  }
+
+  phoneUpdate(phone) {
+    this.setState({ phone: { value: phone, touched: true } });
+  }
+
+  validatePhone() {
+    const phone = this.state.phone.value.trim();
+    if (phone.length === 0) {
+      return "Phone number is required";
+    } else if (
+      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone)
+    ) {
+      return true;
+    }
+    return "Please use a 7 digit US phone format eg 555-543-1234  ";
+  }
+
   render() {
     return (
       <form
@@ -35,26 +83,36 @@ export default class renderUser extends React.Component {
       >
         <div className="name">
           <label htmlFor="RegistrationForm__full_name">
-            Full name <Required />
+            Restaurant name <Required />
           </label>
           <Input
             name="name"
             type="text"
+            placeholder="Restaurant Name"
+            value={this.state.name.value}
+            onChange={(e) => this.nameUpdate(e.target.value)}
             required
-            id="RegistrationForm__full_name"
           ></Input>
+          {this.state.name.touched && (
+            <ValidationError message={this.validateName()} />
+          )}
         </div>
 
         <div className="email">
           <label htmlFor="RegistrationForm__email">
-            User name <Required />
+            Email <Required />
           </label>
           <Input
             name="email"
             type="text"
+            placeholder="email@email.com"
+            value={this.state.email.value}
+            onChange={(e) => this.emailUpdate(e.target.value)}
             required
-            id="RegistrationForm__email"
           ></Input>
+          {this.state.email.touched && (
+            <ValidationError message={this.validateEmail()} />
+          )}
         </div>
 
         <div className="password">
@@ -64,9 +122,14 @@ export default class renderUser extends React.Component {
           <Input
             name="password"
             type="password"
+            placeholder="one numeric digit, uppercase and lowercase letters "
+            value={this.state.password.value}
+            onChange={(e) => this.passwordUpdate(e.target.value)}
             required
-            id="RegistrationForm__password"
           ></Input>
+          {this.state.password.touched && (
+            <ValidationError message={this.validatePassword()} />
+          )}
         </div>
         <div className="address">
           <label htmlFor="RegistrationForm__address">Address</label>
@@ -91,24 +154,37 @@ export default class renderUser extends React.Component {
           <Input
             name="phone"
             type="text"
+            placeholder="555-543-1234"
+            value={this.state.phone.value}
+            onChange={(e) => this.phoneUpdate(e.target.value)}
             required
-            id="RegistrationForm__phone"
           ></Input>
+          {this.state.phone.touched && (
+            <ValidationError message={this.validatePhone()} />
+          )}
         </div>
         <div className="type">
           <label htmlFor="RegistrationForm__type">Type: </label>
           <select name="type" type="text" required id="RegistrationForm__type">
-            <option value="American">American</option>
-            <option value="Chinese">Chinese</option>
-            <option value="French">French</option>
-            <option value="Fast Food">Fast Food</option>
-            <option value="Indian">Indian</option>
-            <option value="Japanese">Japanese</option>
-            <option value="Mexican">Mexican</option>
-            <option value="American">American</option>
+            <optgroup>
+              <option value="American">American</option>
+              <option value="Chinese">Chinese</option>
+              <option value="French">French</option>
+              <option value="Fast Food">Fast Food</option>
+              <option value="Greek">Greek</option>
+              <option value="Indian">Indian</option>
+              <option value="Italian">Italian</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Mexican">Mexican</option>
+              <option value="Middle Eastern">Middle Eastern</option>
+              <option value="Thai">Thai</option>
+              <option value="Other">Other</option>
+            </optgroup>
           </select>
         </div>
-        <Button type="submit">Register</Button>
+        <Button type="submit" id="submit">
+          Register
+        </Button>
       </form>
     );
   }
