@@ -22,15 +22,15 @@ export default class Restaurant extends Component {
         </div>
       ));
 
-    const menuSelection = menu.map((men) => (
-      <div className="menuitems">
-        <ul>
-          <li>{men.item}</li>
-          <li>{men.description}</li>
-          <li>{men.price}</li>
-        </ul>
-      </div>
-    ));
+    const menuSelection = menu
+      .filter((menu) => menu.provider_id === parseInt(id))
+      .map((m) => (
+        <div className="menuitems">
+          <ul>
+            <li>{m.item}</li>
+          </ul>
+        </div>
+      ));
 
     return (
       <div id="rest">

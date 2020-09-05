@@ -1,4 +1,4 @@
-export default menu = [
+const menu = [
   {
     id: 1,
     provider_id: 2,
@@ -16,3 +16,5 @@ export default menu = [
     price: 15.99,
   },
 ];
+
+export default menu;

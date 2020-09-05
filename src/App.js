@@ -11,88 +11,16 @@ import RegisterRestaurant from "./components/Registration/RegisterRest";
 import TopPage from "./components/TopPage/TopPage";
 import LoginPage from "./routes/LoginPage";
 import PrivateRoute from "./utilities/PrivateRoute";
-import Restaurants from "./components/Restaurant/Restaurant";
+import Restaurant from "./components/Restaurant/Restaurant";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AddMenuItems from "./components/Dashboard/AddMenuItems";
-import Restaurant from "./data/restUsers";
+import restaurantData from "./data/restUsers";
+import menuData from "./data/restUsers";
 
 class App extends Component {
   state = {
-    restaurant: [{ Restaurant }],
-    menu: [
-      {
-        id: 1,
-        provider_id: 2,
-        item: "Spaguetti Carbonara",
-        description:
-          "Spaguetti in a white creamy sauce with bits of bacon and onions",
-        price: 14.99,
-      },
-      {
-        id: 2,
-        provider_id: 3,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-      {
-        id: 2,
-        provider_id: 1,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-      {
-        id: 2,
-        provider_id: 3,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-      {
-        id: 2,
-        provider_id: 3,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-      {
-        id: 2,
-        provider_id: 3,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-      {
-        id: 2,
-        provider_id: 3,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-      {
-        id: 2,
-        provider_id: 3,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-      {
-        id: 2,
-        provider_id: 3,
-        item: "Tacos Baja",
-        description:
-          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
-        price: 15.99,
-      },
-    ],
+    restaurant: restaurantData,
+    menu: menuData,
 
     createUser: (e, history) => {
       e.preventDefault();
