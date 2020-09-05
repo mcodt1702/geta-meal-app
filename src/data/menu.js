@@ -1,4 +1,4 @@
-const menu = [
+const menuData = [
   {
     id: 1,
     provider_id: 2,
@@ -9,7 +9,7 @@ const menu = [
   },
   {
     id: 2,
-    provider_id: 3,
+    provider_id: 1,
     item: "Tacos Baja",
     description:
       "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
@@ -17,4 +17,4 @@ const menu = [
   },
 ];
 
-export default menu;
+export default menuData;
