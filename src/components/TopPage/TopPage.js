@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Context from "../../Context";
 import "./TopPage.css";
+import { Link } from "react-router-dom";
 
 export default class TopPage extends Component {
   static contextType = Context;
@@ -12,12 +13,15 @@ export default class TopPage extends Component {
           {this.context.restaurant.map((rest) => (
             <li key={rest.id}>
               <div className="prov">
-                <ul>
-                  <li>{rest.name} </li>
-                  <li>{rest.address}</li>
-                  <li>{rest.phone}</li>
-                  <li>{rest.type}</li>
-                </ul>{" "}
+                <Link to={`restaurant/${rest.id}`}>
+                  {" "}
+                  <ul>
+                    <li>{rest.name}</li>
+                    <li>{rest.address}</li>
+                    <li>{rest.phone}</li>
+                    <li>{rest.type}</li>
+                  </ul>
+                </Link>
               </div>
             </li>
           ))}

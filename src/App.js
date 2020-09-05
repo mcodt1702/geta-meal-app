@@ -66,6 +66,62 @@ class App extends Component {
           "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
         price: 15.99,
       },
+      {
+        id: 2,
+        provider_id: 1,
+        item: "Tacos Baja",
+        description:
+          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
+        price: 15.99,
+      },
+      {
+        id: 2,
+        provider_id: 3,
+        item: "Tacos Baja",
+        description:
+          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
+        price: 15.99,
+      },
+      {
+        id: 2,
+        provider_id: 3,
+        item: "Tacos Baja",
+        description:
+          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
+        price: 15.99,
+      },
+      {
+        id: 2,
+        provider_id: 3,
+        item: "Tacos Baja",
+        description:
+          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
+        price: 15.99,
+      },
+      {
+        id: 2,
+        provider_id: 3,
+        item: "Tacos Baja",
+        description:
+          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
+        price: 15.99,
+      },
+      {
+        id: 2,
+        provider_id: 3,
+        item: "Tacos Baja",
+        description:
+          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
+        price: 15.99,
+      },
+      {
+        id: 2,
+        provider_id: 3,
+        item: "Tacos Baja",
+        description:
+          "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
+        price: 15.99,
+      },
     ],
 
     createUser: (e, history) => {
