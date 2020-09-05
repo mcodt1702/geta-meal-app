@@ -39,7 +39,7 @@ export default class renderUser extends React.Component {
     const email = this.state.email.value.trim();
     if (email.length === 0) {
       return "Email is required";
-    } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    } else if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       return true;
     }
     return "You have entered an invalid email address!";

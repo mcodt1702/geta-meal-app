@@ -12,7 +12,7 @@ export default class Restaurant extends Component {
       .filter((rest) => rest.id === parseInt(id))
       .map((rest) => (
         <div key={id}>
-          <h3>{rest.name}</h3>
+          <h3>Menu for {rest.name}</h3>
           <ul key={id}>
             {" "}
             <li>{rest.address}</li>
@@ -24,7 +24,7 @@ export default class Restaurant extends Component {
     let menus = this.context.menu;
     console.log(menus);
     const menuItems = menus
-      .filter((item) => item.provider_id == parseInt(id))
+      .filter((item) => item.provider_id === parseInt(id))
       .map((food) => (
         <div key={food.id}>
           <li>{food.item}</li>
@@ -35,12 +35,13 @@ export default class Restaurant extends Component {
 
     return (
       <div id="rest">
-        <h2>Account Profile</h2>
         {venue}
         {menuItems}
-        <Link to={`restaurant/dashboard/${id}/additems`}>
-          <button>Add Item to Menu</button>
-        </Link>
+        <>
+          <Link to={`restaurant/users/order/${id}`}>
+            <button>Place order</button>
+          </Link>
+        </>
       </div>
     );
   }

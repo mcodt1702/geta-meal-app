@@ -6,7 +6,7 @@ export default class Dashboard extends Component {
   static contextType = Context;
   render() {
     let { restaurant } = this.context;
-    let id = this.props.match.params.id;
+    let id = this.context.user.id;
 
     const venue = restaurant
       .filter((rest) => rest.id === parseInt(id))
@@ -26,7 +26,7 @@ export default class Dashboard extends Component {
       <div id="rest">
         <h2>Account Profile</h2>
         {venue}
-        <Link to={`restaurant/dashboard/${id}/additems`}>
+        <Link to={`/restaurant/dashboard/additems/${id}/`}>
           <button>Add Item to Menu</button>
         </Link>
       </div>

@@ -5,7 +5,10 @@ import TokenService from "../../services/token-service";
 import { Hyph } from "../../utilities/utilities";
 
 export default class Header extends React.Component {
-  handleLogoutClick = () => {};
+  handleLogoutClick = () => {
+    TokenService.clearAuthToken();
+    this.props.history.push("/");
+  };
 
   renderLogoutLink() {
     return (

@@ -21,13 +21,13 @@ const restaurantData = [
   },
   {
     id: 3,
-    name: "Baja Tacos",
+    name: "Spartanos",
     address: "1809 Oak ave",
     zip: 12095,
     phone: "(918)333-5500",
     username: "bajatacos@tacos.com",
     password: "tac44",
-    type: "Mexican",
+    type: "Greek",
   },
   {
     id: 4,
@@ -42,6 +42,16 @@ const restaurantData = [
   {
     id: 5,
     name: "Toast & Roast",
+    address: "32-07 Broadway Ave ",
+    zip: 11106,
+    phone: "(718) 545-4440",
+    username: "toast@brew.com",
+    password: "tac44",
+    type: "American",
+  },
+  {
+    id: 6,
+    name: "Tacos Mexico",
     address: "32-07 Broadway Ave ",
     zip: 11106,
     phone: "(718) 545-4440",

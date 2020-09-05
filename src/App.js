@@ -9,7 +9,7 @@ import Footer from "./components/Footer/Footer";
 import RegisterUser from "./components/Registration/RegisterUser";
 import RegisterRestaurant from "./components/Registration/RegisterRest";
 import TopPage from "./components/TopPage/TopPage";
-import LoginPage from "./routes/LoginPage";
+import Login from "./components/Login/Login";
 import PrivateRoute from "./utilities/PrivateRoute";
 import Restaurant from "./components/Restaurant/Restaurant";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -17,10 +17,20 @@ import AddMenuItems from "./components/Dashboard/AddMenuItems";
 import restaurantData from "./data/restUsers";
 import menuData from "./data/menu.js";
 
+const testUser = {
+  id: 1,
+  email: "test@test.com",
+  address: "1234 Main Street",
+  zip: "11106",
+  phone: "123-456-7990",
+};
+
 class App extends Component {
   state = {
     restaurant: restaurantData,
     menu: menuData,
+    user_type: null,
+    user: {},
 
     createUser: (e, history) => {
       e.preventDefault();
@@ -33,22 +43,6 @@ class App extends Component {
         password: e.target.password.value,
       };
       console.log(newUser);
-      this.setState(
-        {
-          users: [...this.state.users, newUser],
-        },
-        // () => {
-        //   fetch("http://localhost:9090/users", {
-        //     method: "post",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(newUser),
-        //   }).then((res) => res.json());
-        // },
-
-        () => {
-          history.push("/");
-        }
-      );
     },
 
     createRestaurant: (e, history) => {
@@ -65,27 +59,22 @@ class App extends Component {
         type: e.target.type.value,
       };
       console.log(newRestaurant);
-      this.setState(
-        {
-          restaurant: [...this.state.restaurant, newRestaurant],
-        },
-        // () => {
-        //   fetch("http://localhost:9090/users", {
-        //     method: "post",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(newUser),
-        //   }).then((res) => res.json());
-        // },
+    },
 
-        () => {
-          history.push("/");
-        }
-      );
+    addItemtoMenu: (e) => {
+      console.log("adding items");
     },
 
     handleRegistrationSuccess: (user) => {
       const { history } = this.props;
       history.push("/login");
+    },
+
+    handleLoginSuccess: (user_type) => {
+      this.setState({
+        user_type,
+        user: user_type === "user" ? testUser : restaurantData[0],
+      });
     },
   };
 
@@ -97,8 +86,7 @@ class App extends Component {
           <Route exact path={"/"} component={Type}></Route>
           <Route exact path={"/"} component={Main}></Route>
           <Route path={"/topRated"} component={TopPage}></Route>
-          <Route path={"/topRated"} component={TopPage}></Route>
-          <Route path={"/login"} component={LoginPage}></Route>
+          <Route path={"/login"} component={Login}></Route>
           <Route path={"/registration"} component={Registration}></Route>
           <Route exact path={"/register/user"} component={RegisterUser}></Route>
           <Route
@@ -108,12 +96,12 @@ class App extends Component {
           ></Route>
           <PrivateRoute
             exact
-            path={"/restaurant/dashboard/:id"}
+            path={"/restaurant/dashboard"}
             component={Dashboard}
           ></PrivateRoute>
           <PrivateRoute
             exact
-            path={"/restaurant/dashboard/:id/additems"}
+            path={"/restaurant/dashboard/additems/:id"}
             component={AddMenuItems}
           ></PrivateRoute>
 

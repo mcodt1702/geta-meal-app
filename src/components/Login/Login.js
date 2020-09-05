@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TokenService from "../../services/token-service";
 import { Button, Input } from "../../utilities/utilities";
+import Context from "../../Context";
 import "./Login.css";
 
 export default class LoginForm extends Component {
@@ -8,11 +9,13 @@ export default class LoginForm extends Component {
     onLoginSuccess: () => {},
   };
 
+  static contextType = Context;
+
   state = { error: null };
 
   handleSubmitBasicAuth = (ev) => {
     ev.preventDefault();
-    const { user_name, password } = ev.target;
+    const { user_name, password, user_type } = ev.target;
 
     TokenService.saveAuthToken(
       TokenService.makeBasicAuthToken(user_name.value, password.value)
@@ -20,29 +23,52 @@ export default class LoginForm extends Component {
 
     user_name.value = "";
     password.value = "";
-    this.props.onLoginSuccess();
+    this.context.handleLoginSuccess(user_type.value);
+    this.props.history.push(
+      user_type.value === "user" ? "/" : "/restaurant/dashboard"
+    );
   };
 
   render() {
     const { error } = this.state;
     return (
-      <form className="LoginForm" onSubmit={this.handleSubmitBasicAuth}>
-        <div role="alert">{error && <p className="red">{error}</p>}</div>
-        <div className="user_name">
-          <label htmlFor="LoginForm__user_name">User name</label>
-          <Input required name="user_name" id="LoginForm__user_name"></Input>
-        </div>
-        <div className="password">
-          <label htmlFor="LoginForm__password">Password</label>
-          <Input
-            required
-            name="password"
-            type="password"
-            id="LoginForm__password"
-          ></Input>
-        </div>
-        <Button type="submit">Login</Button>
-      </form>
+      <section className="LoginPage">
+        <h2>Login</h2>
+        <form className="LoginForm" onSubmit={this.handleSubmitBasicAuth}>
+          <div role="alert">{error && <p className="red">{error}</p>}</div>
+          <p>
+            <input
+              type="radio"
+              name="user_type"
+              value="user"
+              id="user_type_user"
+              defaultChecked
+            />
+            <label htmlFor="user_type_user">User</label>
+            <input
+              type="radio"
+              name="user_type"
+              value="rest"
+              id="user_type_rest"
+            />
+            <label htmlFor="user_type_rest">Restaurant</label>
+          </p>
+          <div className="user_name">
+            <label htmlFor="LoginForm__user_name">User name</label>
+            <Input required name="user_name" id="LoginForm__user_name"></Input>
+          </div>
+          <div className="password">
+            <label htmlFor="LoginForm__password">Password</label>
+            <Input
+              required
+              name="password"
+              type="password"
+              id="LoginForm__password"
+            ></Input>
+          </div>
+          <Button type="submit">Login</Button>
+        </form>
+      </section>
     );
   }
 }
