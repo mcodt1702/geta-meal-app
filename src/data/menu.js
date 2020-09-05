@@ -1,4 +1,4 @@
-export default [
+export default menu = [
   {
     id: 1,
     provider_id: 2,
