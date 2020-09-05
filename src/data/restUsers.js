@@ -1,4 +1,4 @@
-const restaurant = [
+const restaurantData = [
   {
     id: 1,
     name: "Joe's Pizza",
@@ -29,6 +29,26 @@ const restaurant = [
     password: "tac44",
     type: "Mexican",
   },
+  {
+    id: 4,
+    name: "Bagels & Brew",
+    address: "43-05 Broadway Ave Astoria, NY ",
+    zip: 11103,
+    phone: "(718) 545-4440",
+    username: "bagels@brew.com",
+    password: "tac44",
+    type: "American",
+  },
+  {
+    id: 5,
+    name: "Toast & Roast",
+    address: "32-07 Broadway Ave ",
+    zip: 11106,
+    phone: "(718) 545-4440",
+    username: "toast@brew.com",
+    password: "tac44",
+    type: "American",
+  },
 ];
 
-export default restaurant;
+export default restaurantData;

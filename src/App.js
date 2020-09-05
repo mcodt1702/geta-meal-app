@@ -15,7 +15,7 @@ import Restaurant from "./components/Restaurant/Restaurant";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AddMenuItems from "./components/Dashboard/AddMenuItems";
 import restaurantData from "./data/restUsers";
-import menuData from "./data/restUsers";
+import menuData from "./data/menu.js";
 
 class App extends Component {
   state = {

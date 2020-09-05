@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input, Required } from "../../utilities/utilities";
+
 import "./Horizontal.css";
 import Context from "../../Context";
 import { Link } from "react-router-dom";
