@@ -9,7 +9,7 @@ const menuData = [
   },
   {
     id: 200,
-    provider_id: 2,
+    provider_id: 6,
     item: "Tacos Baja",
     description:
       "Shrimp Tacos on a corn tortilla with cheese, guacamole and veggies",
@@ -31,7 +31,7 @@ const menuData = [
   },
   {
     id: 500,
-    provider_id: 5,
+    provider_id: 6,
     item: "Guacamole with Chips",
     description:
       "Hass avocado, tomato, Serrano peppers, garlic, lime, cilantro.",
@@ -39,7 +39,7 @@ const menuData = [
   },
   {
     id: 22,
-    provider_id: 5,
+    provider_id: 6,
     item: "Queso Fundido",
     description:
       "Melted cheese with chorizo and poblano pepper. Served with tortillas",

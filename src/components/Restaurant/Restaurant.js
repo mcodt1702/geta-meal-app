@@ -41,6 +41,9 @@ export default class Restaurant extends Component {
           <Link to={`restaurant/users/order/${id}`}>
             <button>Place order</button>
           </Link>
+          <Link to={`/topRated`}>
+            <button>Back to Restaurants</button>
+          </Link>
         </>
       </div>
     );

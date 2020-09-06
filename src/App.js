@@ -20,7 +20,7 @@ import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 
 const restTestUser = {
-  id: 2,
+  id: 6,
   email: "test@test.com",
   address: "1234 Main Street",
   zip: "11106",
@@ -40,7 +40,7 @@ class App extends Component {
     restaurant: restaurantData,
     menu: menuData,
     user_type: null,
-    user: null,
+    user: 7,
 
     createUser: (e, history) => {
       e.preventDefault();
@@ -85,15 +85,15 @@ class App extends Component {
       history.push("/restaurant/dashboard");
     },
 
-    modifyItemtoMenu: (e, rprops) => {
+    modifyItemtoMenu: (e, history) => {
       e.preventDefault();
       let modifiedItem = {
         item: e.target.item.value,
         description: e.target.description.value,
         price: e.target.price.value,
       };
-
       console.log(modifiedItem);
+      history.push("/restaurant/dashboard");
     },
 
     deleteItemtoMenu: (id) => {
@@ -107,10 +107,11 @@ class App extends Component {
       history.push("/login");
     },
 
-    handleLoginSuccess: (user_type) => {
+    handleLoginSuccess: (type) => {
+      console.log(type);
       this.setState({
-        user_type,
-        user: user_type === "user" ? restTestUser : restaurantData[0],
+        user_type: type,
+        user: type === "user" ? clientTestUser : restTestUser,
       });
     },
   };

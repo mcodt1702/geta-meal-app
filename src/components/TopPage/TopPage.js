@@ -13,7 +13,7 @@ export default class TopPage extends Component {
           {this.context.restaurant.map((rest) => (
             <li key={rest.id}>
               <div className="prov">
-                <Link to={`restaurant/${rest.id}`}>
+                <Link to={`vendor/${rest.id}`}>
                   {" "}
                   <ul>
                     <li>{rest.name}</li>

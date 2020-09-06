@@ -20,7 +20,7 @@ export default class LoginForm extends Component {
     console.log(user_name);
     const restaurant = this.context.restaurant;
     const validated = restaurant.filter(
-      (valid) => valid.username == user_name.value
+      (valid) => valid.username === user_name.value
     );
     console.log(validated);
     if (validated.length > 0) {
