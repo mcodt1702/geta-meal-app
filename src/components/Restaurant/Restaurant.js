@@ -4,6 +4,16 @@ import { Link } from "react-router-dom";
 export default class Restaurant extends Component {
   static contextType = Context;
 
+  state = {
+    order: [],
+  };
+
+  addItemToOrder(id) {
+    const newOrder = this.context.menu.filter((dish) => dish.id === id);
+    this.setState({ order: newOrder });
+    console.log(newOrder);
+  }
+
   render() {
     let { restaurant } = this.context;
     let id = this.props.match.params.id;
@@ -26,11 +36,14 @@ export default class Restaurant extends Component {
     const menuItems = menus
       .filter((item) => item.provider_id === parseInt(id))
       .map((food) => (
-        <div key={food.id}>
-          <li>{food.item}</li>
-          <li>{food.description}</li>
-          <li>{food.price}</li>
-        </div>
+        <Link onClick={this.addItemToOrder(food.id)}>
+          {" "}
+          <div key={food.id}>
+            <li>{food.item}</li>
+            <li>{food.description}</li>
+            <li>{food.price}</li>
+          </div>
+        </Link>
       ));
 
     return (
