@@ -16,9 +16,11 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import AddMenuItems from "./components/Dashboard/AddMenuItems";
 import restaurantData from "./data/restUsers";
 import menuData from "./data/menu.js";
+import Orders from "./components/Orders/Orders";
+import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 
 const testUser = {
-  id: 1,
+  id: 2,
   email: "test@test.com",
   address: "1234 Main Street",
   zip: "11106",
@@ -30,7 +32,7 @@ class App extends Component {
     restaurant: restaurantData,
     menu: menuData,
     user_type: null,
-    user: {},
+    user: testUser,
 
     createUser: (e, history) => {
       e.preventDefault();
@@ -61,10 +63,37 @@ class App extends Component {
       console.log(newRestaurant);
     },
 
-    addItemtoMenu: (e) => {
-      console.log("adding items");
+    addItemtoMenu: (e, history) => {
+      e.preventDefault();
+      let newItem = {
+        id: this.state.menu.length + 1,
+        provider_id: this.state.user.id,
+        item: e.target.item.value,
+        description: e.target.description.value,
+        price: e.target.price.value,
+      };
+      console.log(newItem);
+      this.setState({ menu: [...this.state.menu, newItem] });
+      history.push("/restaurant/dashboard");
     },
 
+    modifyItemtoMenu: (e, rprops) => {
+      e.preventDefault();
+      let modifiedItem = {
+        item: e.target.item.value,
+        description: e.target.description.value,
+        price: e.target.price.value,
+      };
+
+      console.log(modifiedItem);
+    },
+
+    deleteItemtoMenu: (id) => {
+      console.log(id);
+      this.setState({
+        menu: this.state.menu.filter((item) => item.id !== id),
+      });
+    },
     handleRegistrationSuccess: (user) => {
       const { history } = this.props;
       history.push("/login");
@@ -104,8 +133,18 @@ class App extends Component {
             path={"/restaurant/dashboard/additems/:id"}
             component={AddMenuItems}
           ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path={"/restaurant/dashboard/modify/:id"}
+            component={ModifyMenuItem}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path={"/restaurant/dashboard/orders"}
+            component={Orders}
+          ></PrivateRoute>
 
-          <Route exact path={"/restaurant/:id"} component={Restaurant}></Route>
+          <Route exact path={"/vendor/:id"} component={Restaurant}></Route>
           <Route path={"/"} component={Footer}></Route>
         </div>
       </Context.Provider>

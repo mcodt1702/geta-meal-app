@@ -57,12 +57,10 @@ export default class renderUser extends React.Component {
   render() {
     return (
       <form
-        onSubmit={(e) => this.context.addItemtoMenu(e, this.props.history)}
+        onSubmit={(e) => this.context.modifyItemtoMenu(e, this.props)}
         id="userform"
       >
-        <div>
-          Hello please fill out the form to add another item to your menu
-        </div>
+        <div>Please fill out the fields you want to change</div>
         <div className="item">
           <label htmlFor="RegistrationForm__full_item">
             Item Name <Required />
@@ -114,7 +112,7 @@ export default class renderUser extends React.Component {
           )}
         </div>
         <Button type="submit" id="submit">
-          Add Item to Menu
+          Modify Item
         </Button>
       </form>
     );

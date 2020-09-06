@@ -25,7 +25,7 @@ export default class LoginForm extends Component {
     password.value = "";
     this.context.handleLoginSuccess(user_type.value);
     this.props.history.push(
-      user_type.value === "user" ? "/" : "/restaurant/dashboard"
+      user_type.value === "user" ? "/restaurant/dashboard" : "/"
     );
   };
 

@@ -11,7 +11,7 @@ const restaurantData = [
   },
   {
     id: 2,
-    name: "Larrys Pizza",
+    name: "Larry's Pizza",
     address: "1809 Seaside rd",
     zip: 12099,
     phone: "(918)555-8900",
@@ -57,7 +57,7 @@ const restaurantData = [
     phone: "(718) 545-4440",
     username: "toast@brew.com",
     password: "tac44",
-    type: "American",
+    type: "Mexican",
   },
 ];
 
