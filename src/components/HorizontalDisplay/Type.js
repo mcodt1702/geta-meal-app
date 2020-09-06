@@ -13,40 +13,40 @@ export default class Type extends React.Component {
         <div className="table">
           <ul id="horizontal-list">
             <li>
-              <Link to="/typeChinese">AMERICAN</Link>
+              <Link to="/typeAmerican">AMERICAN</Link>
             </li>
             <li>
               <Link to="/typeChinese">CHINESE</Link>
             </li>
             <li>
-              <Link to="/typeChinese">FRENCH</Link>
+              <Link to="/typeFrench">FRENCH</Link>
             </li>
             <li>
-              <Link to="/typeChinese">FAST FOOD</Link>
+              <Link to="/typeFastFood">FAST FOOD</Link>
             </li>
             <li>
-              <Link to="/typeChinese">GREEK</Link>
+              <Link to="/typeGreek">GREEK</Link>
             </li>
             <li>
-              <Link to="/typeChinese">INDIAN</Link>
+              <Link to="/typeIndian">INDIAN</Link>
             </li>
             <li>
-              <Link to="/typeChinese">ITALIAN</Link>
+              <Link to="/typeItalian">ITALIAN</Link>
             </li>
             <li>
-              <Link to="/typeChinese">JAPANESE</Link>
+              <Link to="/typeJapanese">JAPANESE</Link>
             </li>
             <li>
-              <Link to="/typeChinese">MEXICAN</Link>
+              <Link to="/typeMexican">MEXICAN</Link>
             </li>
             <li>
-              <Link to="/typeChinese">MIDDLE EASTERN</Link>
+              <Link to="/typeMEastern">MIDDLE EASTERN</Link>
             </li>
             <li>
-              <Link to="/typeChinese">THAI</Link>
+              <Link to="/typeThai">THAI</Link>
             </li>
             <li>
-              <Link to="/typeChinese">OTHER</Link>
+              <Link to="/typeOther">OTHER</Link>
             </li>
           </ul>
         </div>

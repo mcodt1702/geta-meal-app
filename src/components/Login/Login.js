@@ -15,18 +15,28 @@ export default class LoginForm extends Component {
 
   handleSubmitBasicAuth = (ev) => {
     ev.preventDefault();
+
     const { user_name, password, user_type } = ev.target;
-
-    TokenService.saveAuthToken(
-      TokenService.makeBasicAuthToken(user_name.value, password.value)
+    console.log(user_name);
+    const restaurant = this.context.restaurant;
+    const validated = restaurant.filter(
+      (valid) => valid.username == user_name.value
     );
+    console.log(validated);
+    if (validated.length > 0) {
+      TokenService.saveAuthToken(
+        TokenService.makeBasicAuthToken(user_name.value, password.value)
+      );
 
-    user_name.value = "";
-    password.value = "";
-    this.context.handleLoginSuccess(user_type.value);
-    this.props.history.push(
-      user_type.value === "user" ? "/restaurant/dashboard" : "/"
-    );
+      user_name.value = "";
+      password.value = "";
+      this.context.handleLoginSuccess(user_type.value);
+      this.props.history.push(
+        user_type.value === "rest" ? "/restaurant/dashboard" : "/"
+      );
+    }
+
+    this.setState({ error: "Invalid Credentials" });
   };
 
   render() {
@@ -36,6 +46,7 @@ export default class LoginForm extends Component {
         <h2>Login</h2>
         <form className="LoginForm" onSubmit={this.handleSubmitBasicAuth}>
           <div role="alert">{error && <p className="red">{error}</p>}</div>
+          <p>REVIEWER USE= username: joe@pizza.com, password: 1</p>
           <p>
             <input
               type="radio"

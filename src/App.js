@@ -19,7 +19,15 @@ import menuData from "./data/menu.js";
 import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 
-const testUser = {
+const restTestUser = {
+  id: 2,
+  email: "test@test.com",
+  address: "1234 Main Street",
+  zip: "11106",
+  phone: "123-456-7990",
+};
+
+const clientTestUser = {
   id: 2,
   email: "test@test.com",
   address: "1234 Main Street",
@@ -32,7 +40,7 @@ class App extends Component {
     restaurant: restaurantData,
     menu: menuData,
     user_type: null,
-    user: testUser,
+    user: null,
 
     createUser: (e, history) => {
       e.preventDefault();
@@ -102,7 +110,7 @@ class App extends Component {
     handleLoginSuccess: (user_type) => {
       this.setState({
         user_type,
-        user: user_type === "user" ? testUser : restaurantData[0],
+        user: user_type === "user" ? restTestUser : restaurantData[0],
       });
     },
   };
