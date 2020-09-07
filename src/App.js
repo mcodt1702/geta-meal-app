@@ -39,6 +39,7 @@ class App extends Component {
   state = {
     restaurant: restaurantData,
     menu: menuData,
+    order: [{ item: null, descriptio: null, price: null }],
     user_type: null,
     user: 7,
 
@@ -69,6 +70,10 @@ class App extends Component {
         type: e.target.type.value,
       };
       console.log(newRestaurant);
+    },
+
+    createOrder: (newOrder) => {
+      this.setState({ order: [...this.state.order, newOrder] });
     },
 
     addItemtoMenu: (e, history) => {

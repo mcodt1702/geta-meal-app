@@ -11,6 +11,8 @@ export default class Restaurant extends Component {
   addItemToOrder(id) {
     const newOrder = this.context.menu.filter((dish) => dish.id === id);
     this.setState({ order: newOrder });
+    this.context.createOrder(newOrder);
+
     console.log(newOrder);
   }
 
@@ -32,30 +34,45 @@ export default class Restaurant extends Component {
         </div>
       ));
     let menus = this.context.menu;
-    console.log(menus);
+
     const menuItems = menus
       .filter((item) => item.provider_id === parseInt(id))
       .map((food) => (
-        <Link onClick={this.addItemToOrder(food.id)}>
-          {" "}
-          <div key={food.id}>
-            <li>{food.item}</li>
-            <li>{food.description}</li>
-            <li>{food.price}</li>
-          </div>
-        </Link>
+        <div key={food.id}>
+          <li>{food.item}</li>
+          <li>{food.description}</li>
+          <li>{food.price} </li>
+          <button
+            onClick={() => {
+              this.addItemToOrder(food.id);
+            }}
+          >
+            Add Item to Order
+          </button>
+        </div>
       ));
+    let order = this.context.order;
+    console.log(order);
+    const viewOrder = order.map((items) => (
+      <div key={items.id}>
+        <li>{items.item}</li>
+        <li>{items.description}</li>
+        <li>{items.price}</li>
+      </div>
+    ));
 
     return (
       <div id="rest">
         {venue}
         {menuItems}
         <>
-          <Link to={`restaurant/users/order/${id}`}>
-            <button>Place order</button>
-          </Link>
+          {" "}
           <Link to={`/topRated`}>
             <button>Back to Restaurants</button>
+          </Link>
+          {viewOrder}
+          <Link to={`restaurant/users/order/${id}`}>
+            <button>Place order</button>
           </Link>
         </>
       </div>
