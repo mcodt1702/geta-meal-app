@@ -39,7 +39,9 @@ class App extends Component {
   state = {
     restaurant: restaurantData,
     menu: menuData,
-    order: [{ item: null, descriptio: null, price: null }],
+    orders: [{ id: 1, provider_id: 7, consumer_id: 1, status: "pending" }],
+    order: {},
+    orderItems: [],
     user_type: null,
     user: 7,
 
@@ -72,8 +74,19 @@ class App extends Component {
       console.log(newRestaurant);
     },
 
-    createOrder: (newOrder) => {
-      this.setState({ order: [...this.state.order, newOrder] });
+    addItemToOrder: (food) => {
+      const orderItems = this.state.orderItems.slice();
+      let alreadyInOrder = false;
+
+      orderItems.forEach((item) => {
+        if (item.id === food.id) {
+          item.count++;
+          alreadyInOrder = true;
+        }
+      });
+      if (!alreadyInOrder) {
+        orderItems.push({ ...food, count: 1 });
+      }
     },
 
     addItemtoMenu: (e, history) => {
