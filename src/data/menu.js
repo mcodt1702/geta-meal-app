@@ -35,7 +35,7 @@ const menuData = [
     item: "Guacamole with Chips",
     description:
       "Hass avocado, tomato, Serrano peppers, garlic, lime, cilantro.",
-    price: "$10.0",
+    price: 10.0,
   },
   {
     id: 22,
@@ -43,7 +43,7 @@ const menuData = [
     item: "Queso Fundido",
     description:
       "Melted cheese with chorizo and poblano pepper. Served with tortillas",
-    price: "$11.0",
+    price: 11.0,
   },
   {
     id: 23,
@@ -51,7 +51,7 @@ const menuData = [
     item: "Tzatziki",
     description:
       "Melted cheese with chorizo and poblano pepper. Served with tortillas",
-    price: "$11.0",
+    price: 11.0,
   },
   {
     id: 24,
@@ -59,7 +59,7 @@ const menuData = [
     item: "Greek Salad",
     description:
       "Romaine, cucumbers, Kalamata olives, onions, tomatoes and feta.",
-    price: "$11.0",
+    price: 11.0,
   },
 ];
 

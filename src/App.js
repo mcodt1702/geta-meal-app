@@ -18,6 +18,7 @@ import restaurantData from "./data/restUsers";
 import menuData from "./data/menu.js";
 import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
+import CompleteOrder from "./components/Cart/CompleteOrder";
 
 const restTestUser = {
   id: 6,
@@ -87,6 +88,18 @@ class App extends Component {
       if (!alreadyInOrder) {
         orderItems.push({ ...food, count: 1 });
       }
+      this.setState({ orderItems });
+    },
+
+    removeItemfromOrder: (id) => {
+      const idp = parseInt(id);
+      this.setState({
+        orderItems: this.state.orderItems.filter((item) => item.id !== idp),
+      });
+    },
+
+    placeOrder: () => {
+      let orderItems = this.state.orderItems;
     },
 
     addItemtoMenu: (e, history) => {
@@ -172,6 +185,11 @@ class App extends Component {
           ></PrivateRoute>
 
           <Route exact path={"/vendor/:id"} component={Restaurant}></Route>
+          <Route
+            exact
+            path={"/vendor/order/:id"}
+            component={CompleteOrder}
+          ></Route>
           <Route path={"/"} component={Footer}></Route>
         </div>
       </Context.Provider>
