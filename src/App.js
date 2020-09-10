@@ -99,7 +99,19 @@ class App extends Component {
     },
 
     placeOrder: () => {
-      let orderItems = this.state.orderItems;
+      const orderItems = this.state.orderItems.slice();
+      const id = this.state.orders.length + 1;
+      const provider_id = orderItems.provider_id;
+      const quantity = orderItems.count;
+      console.log(this.state.orderItems);
+
+      const newOrder = {
+        id: `${id}`,
+        provider_id: `${provider_id}`,
+        quentity: `${quantity}`,
+      };
+
+      console.log(newOrder);
     },
 
     addItemtoMenu: (e, history) => {

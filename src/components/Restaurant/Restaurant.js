@@ -47,9 +47,8 @@ export default class Restaurant extends Component {
           <button>Back to Restaurants</button>
         </Link>
         <Cart />
-        <Link to={`/vendor/order/${this.context.user}`}>
-          <button>Place order</button>
-        </Link>
+
+        <button onClick={() => this.context.placeOrder(id)}>Place order</button>
       </div>
     );
   }
