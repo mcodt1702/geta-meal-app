@@ -98,7 +98,7 @@ class App extends Component {
       });
     },
 
-    placeOrder: () => {
+    placeOrder: (history) => {
       const orderItems = this.state.orderItems.slice();
       const id = this.state.orders.length + 1;
       const order = this.state.order.slice();
@@ -113,12 +113,14 @@ class App extends Component {
           consumer_id: `${consumer_id}`,
           provider_id: `${provider_id}`,
           quantity: `${quantity}`,
-          statur: "pending",
+          status: "pending",
         };
         order.push(newOrder);
 
         this.setState({ order }, () => console.log(this.state.order));
       });
+
+      history.push(`/vendor/orders`);
     },
 
     addItemtoMenu: (e, history) => {
