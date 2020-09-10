@@ -41,7 +41,7 @@ class App extends Component {
     restaurant: restaurantData,
     menu: menuData,
     orders: [{ id: 1, provider_id: 7, consumer_id: 1, status: "pending" }],
-    order: {},
+    order: [],
     orderItems: [],
     user_type: null,
     user: 7,
@@ -101,6 +101,7 @@ class App extends Component {
     placeOrder: () => {
       const orderItems = this.state.orderItems.slice();
       const id = this.state.orders.length + 1;
+      const order = this.state.order.slice();
 
       orderItems.forEach((item) => {
         const provider_id = item.provider_id;
@@ -113,9 +114,11 @@ class App extends Component {
           provider_id: `${provider_id}`,
           quentity: `${quantity}`,
         };
-        orderItems.push(newOrder);
-        console.log(this.state.orderItems);
+        order.push(newOrder);
+
+        this.setState({ order });
       });
+      console.log(this.state.order);
     },
 
     addItemtoMenu: (e, history) => {
