@@ -117,9 +117,8 @@ class App extends Component {
         };
         order.push(newOrder);
 
-        this.setState({ order });
+        this.setState({ order }, () => console.log(this.state.order));
       });
-      console.log(this.state.order);
     },
 
     addItemtoMenu: (e, history) => {
