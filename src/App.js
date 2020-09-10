@@ -19,6 +19,9 @@ import menuData from "./data/menu.js";
 import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 import CompleteOrder from "./components/Cart/CompleteOrder";
+import Nation from "./components/HorizontalDisplay/Nation";
+import UserAdmin from "./components/Admin/userAdmin";
+import DealsPage from "./components/Deals/DealsPage";
 
 const restTestUser = {
   id: 6,
@@ -40,8 +43,8 @@ class App extends Component {
   state = {
     restaurant: restaurantData,
     menu: menuData,
-    orders: [{ id: 1, provider_id: 7, consumer_id: 1, status: "pending" }],
-    order: [],
+    //orders: [{ id: 1, provider_id: 7, consumer_id: 1, status: "pending" }],
+    orders: [],
     orderItems: [],
     user_type: null,
     user: 7,
@@ -101,7 +104,7 @@ class App extends Component {
     placeOrder: (history) => {
       const orderItems = this.state.orderItems.slice();
       const id = this.state.orders.length + 1;
-      const order = this.state.order.slice();
+      const orders = this.state.orders.slice();
 
       orderItems.forEach((item) => {
         const provider_id = item.provider_id;
@@ -115,14 +118,17 @@ class App extends Component {
           quantity: `${quantity}`,
           status: "pending",
         };
-        order.push(newOrder);
+        orders.push(newOrder);
 
-        this.setState({ order }, () => console.log(this.state.order));
+        this.setState({ orders }, () => console.log(this.state.orders));
       });
 
-      history.push(`/vendor/orders`);
+      //history.push("/");
+      this.state.pageRedirect();
     },
-
+    pageRedirect: () => {
+      window.location.replace("/vendor/order/sent");
+    },
     addItemtoMenu: (e, history) => {
       e.preventDefault();
       let newItem = {
@@ -176,6 +182,7 @@ class App extends Component {
           <Route exact path={"/"} component={Type}></Route>
           <Route exact path={"/"} component={Main}></Route>
           <Route path={"/topRated"} component={TopPage}></Route>
+          <Route path={"/deals"} component={DealsPage}></Route>
           <Route path={"/login"} component={Login}></Route>
           <Route path={"/registration"} component={Registration}></Route>
           <Route exact path={"/register/user"} component={RegisterUser}></Route>
@@ -204,12 +211,17 @@ class App extends Component {
             path={"/restaurant/dashboard/orders"}
             component={Orders}
           ></PrivateRoute>
-
+          <Route exact path={"/type/:nation"} component={Nation}></Route>
           <Route exact path={"/vendor/:id"} component={Restaurant}></Route>
           <Route
             exact
             path={"/vendor/order/:id"}
             component={CompleteOrder}
+          ></Route>
+          <Route
+            exact
+            path={"/vendor/order/sent"}
+            component={UserAdmin}
           ></Route>
           <Route path={"/"} component={Footer}></Route>
         </div>

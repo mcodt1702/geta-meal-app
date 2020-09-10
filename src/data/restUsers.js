@@ -17,7 +17,7 @@ const restaurantData = [
     phone: "(918)555-8900",
     username: "larry@larrpizza.com",
     password: "lar11",
-    type: "American",
+    type: "Italian",
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const restaurantData = [
   },
   {
     id: 5,
-    name: "Toast & Roast",
+    name: "Toast & Roast Bagels and Coffee",
     address: "32-07 Broadway Ave ",
     zip: 11106,
     phone: "(718) 545-4440",
@@ -58,6 +58,27 @@ const restaurantData = [
     username: "toast@brew.com",
     password: "tac44",
     type: "Mexican",
+  },
+  {
+    id: 7,
+    name: "Xin Taste Hand Pull Noodle",
+    address: "72-38 Austin St",
+    zip: 11375,
+    phone: "(718) 520-5199",
+    username: "toast@brew.com",
+    password: "tac44",
+    type: "Chinese",
+  },
+
+  {
+    id: 8,
+    name: "JiangNan 江南食府",
+    address: "72-38 Austin St",
+    zip: 10029,
+    phone: "(718) 520-5199",
+    username: "toast@brew.com",
+    password: "tac44",
+    type: "Chinese",
   },
 ];
 
