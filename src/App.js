@@ -112,7 +112,8 @@ class App extends Component {
           id: `${id}`,
           consumer_id: `${consumer_id}`,
           provider_id: `${provider_id}`,
-          quentity: `${quantity}`,
+          quantity: `${quantity}`,
+          statur: "pending",
         };
         order.push(newOrder);
 
