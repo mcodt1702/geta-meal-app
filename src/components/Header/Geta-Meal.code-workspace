@@ -1,9 +1,15 @@
 {
   "folders": [
-	{
-		"path": "..\\..\\.."
-	}
-],
+    {
+      "path": "..\\..\\.."
+    },
+    {
+      "path": "..\\..\\..\\..\\..\\react\\noteful"
+    },
+    {
+      "path": "..\\..\\..\\..\\..\\react"
+    }
+  ],
   "settings": {
     "liveServer.settings.multiRootWorkspaceName": "Geta-Meal"
   }

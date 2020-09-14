@@ -22,7 +22,9 @@ import CompleteOrder from "./components/Cart/CompleteOrder";
 import Nation from "./components/HorizontalDisplay/Nation";
 import UserAdmin from "./components/Admin/userAdmin";
 import DealsPage from "./components/Deals/DealsPage";
+import Config from "./config";
 
+const { API_ENDPOINT } = Config;
 const restTestUser = {
   id: 6,
   email: "test@test.com",
@@ -41,13 +43,13 @@ const clientTestUser = {
 
 class App extends Component {
   state = {
-    restaurant: restaurantData,
-    menu: menuData,
-    //orders: [{ id: 1, provider_id: 7, consumer_id: 1, status: "pending" }],
+    restaurants: [],
+    menu: [],
+
     orders: [],
     orderItems: [],
     user_type: null,
-    user: 7,
+    users: [],
 
     createUser: (e, history) => {
       e.preventDefault();
@@ -173,6 +175,51 @@ class App extends Component {
       });
     },
   };
+
+  componentDidMount() {
+    console.log(API_ENDPOINT);
+    fetch(`${API_ENDPOINT}/consumers`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong"); // throw an error
+        }
+        return res;
+      })
+      .then((res) => res.json())
+      .then((users) => this.setState({ users }))
+      .catch((err) => {
+        alert("There was a problem connectig to the server.", err);
+        console.log("Handling the error here.", err);
+      });
+
+    fetch(`${API_ENDPOINT}/providers`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong"); // throw an error
+        }
+        return res;
+      })
+      .then((res) => res.json())
+      .then((restaurants) => this.setState({ restaurants }))
+      .catch((err) => {
+        alert("There was a problem connectig to the server.", err);
+        console.log("Handling the error here.", err);
+      });
+    fetch(`${API_ENDPOINT}/dishes`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong"); // throw an error
+        }
+        return res;
+      })
+      .then((res) => res.json())
+      .then((menu) => this.setState({ menu }))
+      .catch((err) => {
+        alert("There was a problem connectig to the server.", err);
+        console.log("Handling the error here.", err);
+      });
+    console.log(this.state.menu);
+  }
 
   render() {
     return (

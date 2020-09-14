@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import Context from "../../Context";
-import "./TopPage.css";
 import { Link } from "react-router-dom";
+import Context from "../../Context";
+import "./Deals.css";
 
-export default class TopPage extends Component {
+export default class Deals extends Component {
   static contextType = Context;
   render() {
     return (
       <div id="topPage">
-        <h2>TOP RATED</h2>
+        <h2>Deals</h2>
         <ul>
-          {this.context.restaurants.map((rest) => (
+          {this.context.restaurant.map((rest) => (
             <li key={rest.id}>
               <div className="prov">
                 <Link to={`vendor/${rest.id}`}>

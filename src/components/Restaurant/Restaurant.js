@@ -7,10 +7,10 @@ export default class Restaurant extends Component {
   static contextType = Context;
 
   render() {
-    let { restaurant } = this.context;
+    let { restaurants } = this.context;
     let id = this.props.match.params.id;
 
-    const venue = restaurant
+    const venue = restaurants
       .filter((rest) => rest.id === parseInt(id))
       .map((rest) => (
         <div key={id}>
@@ -29,7 +29,7 @@ export default class Restaurant extends Component {
       .filter((item) => item.provider_id === parseInt(id))
       .map((food) => (
         <div key={food.id}>
-          <li>{food.item}</li>
+          <li>{food.name}</li>
           <li>{food.description}</li>
           <li>{food.price} </li>
           <button onClick={() => this.context.addItemToOrder(food)}>
