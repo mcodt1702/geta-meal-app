@@ -18,9 +18,9 @@ export default class LoginForm extends Component {
 
     const { user_name, password, user_type } = ev.target;
     console.log(user_name);
-    const restaurant = this.context.restaurant;
+    const restaurant = this.context.restaurants;
     const validated = restaurant.filter(
-      (valid) => valid.username === user_name.value
+      (valid) => valid.email === user_name.value
     );
     console.log(validated);
     if (validated.length > 0) {
@@ -66,7 +66,12 @@ export default class LoginForm extends Component {
           </p>
           <div className="user_name">
             <label htmlFor="LoginForm__user_name">User name</label>
-            <Input required name="user_name" id="LoginForm__user_name"></Input>
+            <Input
+              required
+              name="user_name"
+              id="LoginForm__user_name"
+              placeholder="email"
+            ></Input>
           </div>
           <div className="password">
             <label htmlFor="LoginForm__password">Password</label>

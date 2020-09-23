@@ -14,8 +14,7 @@ import PrivateRoute from "./utilities/PrivateRoute";
 import Restaurant from "./components/Restaurant/Restaurant";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AddMenuItems from "./components/Dashboard/AddMenuItems";
-import restaurantData from "./data/restUsers";
-import menuData from "./data/menu.js";
+
 import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 import CompleteOrder from "./components/Cart/CompleteOrder";
@@ -25,28 +24,13 @@ import DealsPage from "./components/Deals/DealsPage";
 import Config from "./config";
 
 const { API_ENDPOINT } = Config;
-const restTestUser = {
-  id: 6,
-  email: "test@test.com",
-  address: "1234 Main Street",
-  zip: "11106",
-  phone: "123-456-7990",
-};
-
-const clientTestUser = {
-  id: 2,
-  email: "test@test.com",
-  address: "1234 Main Street",
-  zip: "11106",
-  phone: "123-456-7990",
-};
 
 class App extends Component {
   state = {
     restaurants: [],
     menu: [],
-
     orders: [],
+    cartItems: [],
     orderItems: [],
     user_type: null,
     users: [],
@@ -68,7 +52,7 @@ class App extends Component {
       e.preventDefault();
 
       let newRestaurant = {
-        id: this.state.restaurant.lenght + 1,
+        id: this.state.restaurants.length + 1,
         name: e.target.name.value,
         address: e.target.address.value,
         zip: e.target.zip.value,
@@ -78,56 +62,112 @@ class App extends Component {
         type: e.target.type.value,
       };
       console.log(newRestaurant);
+
+      fetch("http://localhost:8000/providers", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRestaurant),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something went wrong"); // throw an error
+          }
+          return res;
+        })
+
+        .then((res) => res.json())
+        .then((newRestaurant) => {
+          this.setState({
+            restaurants: [...this.state.restaurants, newRestaurant],
+          });
+        })
+        .catch((err) => {
+          alert(
+            "There was a problem coneectig to the server. We can't create a new Note",
+            err
+          );
+        });
+      history.push("/restaurant/dashboard");
     },
 
-    addItemToOrder: (food) => {
-      const orderItems = this.state.orderItems.slice();
+    addItemToCart: (food) => {
+      const cartItems = this.state.cartItems.slice();
       let alreadyInOrder = false;
 
-      orderItems.forEach((item) => {
+      cartItems.forEach((item) => {
         if (item.id === food.id) {
           item.count++;
           alreadyInOrder = true;
         }
       });
       if (!alreadyInOrder) {
-        orderItems.push({ ...food, count: 1 });
+        cartItems.push({ ...food, count: 1 });
       }
-      this.setState({ orderItems });
+      this.setState({ cartItems });
     },
 
     removeItemfromOrder: (id) => {
       const idp = parseInt(id);
       this.setState({
-        orderItems: this.state.orderItems.filter((item) => item.id !== idp),
+        cartItems: this.state.cartItems.filter((item) => item.id !== idp),
       });
     },
 
-    placeOrder: (history) => {
-      const orderItems = this.state.orderItems.slice();
-      const id = this.state.orders.length + 1;
-      const orders = this.state.orders.slice();
+    addOrderItem: (history) => {
+      // 1- I need to create an order and get back an order id
+      //2-used that order id to create the item that needs to
+      //be added to the order item
+      //3- send the orderItem to the database
+      //4- display the order after it was sent.
 
-      orderItems.forEach((item) => {
-        const provider_id = item.provider_id;
+      const order_id = this.state.orders.length + 1;
+      console.log(order_id);
+
+      this.state.cartItems.forEach((item) => {
+        const dish_id = item.id;
         const quantity = item.count;
-        const consumer_id = this.state.user;
 
-        const newOrder = {
-          id: `${id}`,
-          consumer_id: `${consumer_id}`,
-          provider_id: `${provider_id}`,
-          quantity: `${quantity}`,
-          status: "pending",
+        let newOrderItem = {
+          order_id: `${order_id}`,
+          dish_id: `${dish_id}`,
+          qty: `${quantity}`,
         };
-        orders.push(newOrder);
 
-        this.setState({ orders }, () => console.log(this.state.orders));
+        console.log(newOrderItem);
+        fetch(
+          `${API_ENDPOINT}/orderitems`,
+
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newOrderItem),
+          }
+        )
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(
+                "There was a problem coneectig to the server. We can't create a new Order"
+              ); // throw an error
+            }
+
+            return res;
+          })
+
+          .then((res) => res.json())
+          .then((response) => console.log(response))
+
+          .then((newItem) => {
+            this.setState({
+              orderItems: [...this.state.orderItems, newItem],
+            });
+            console.log(this.state.orderItems);
+          })
+          .catch(Error);
       });
 
-      //history.push("/");
-      this.state.pageRedirect();
+      // window.location.replace(`/vendor/order/${id}`);
     },
+
     pageRedirect: () => {
       window.location.replace("/vendor/order/sent");
     },
@@ -171,7 +211,6 @@ class App extends Component {
       console.log(type);
       this.setState({
         user_type: type,
-        user: type === "user" ? clientTestUser : restTestUser,
       });
     },
   };

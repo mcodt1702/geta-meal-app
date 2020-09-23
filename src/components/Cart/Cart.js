@@ -4,21 +4,21 @@ import Context from "../../Context";
 export default class Cart extends Component {
   static contextType = Context;
   render() {
-    const { orderItems } = this.context;
+    const { cartItems } = this.context;
 
     return (
       <>
         <div className="countHeader">
-          {orderItems.length === 0 ? (
-            <div>Your Order has no items{orderItems.items}</div>
+          {cartItems.length === 0 ? (
+            <div>Your Order has no items{cartItems.items}</div>
           ) : (
-            <div>You have {orderItems.length} items in your order</div>
+            <div>You have {cartItems.length} items in your order</div>
           )}
         </div>
 
         <div className="listOfItems">
           <ul>
-            {orderItems.map((items) => (
+            {cartItems.map((items) => (
               <li key={items.id}>
                 <div>{items.item}</div>
                 <div>
@@ -33,9 +33,9 @@ export default class Cart extends Component {
             ))}
           </ul>
         </div>
-        {orderItems.length !== 0 && (
+        {cartItems.length !== 0 && (
           <div className="total">
-            Total= ${orderItems.reduce((a, c) => a + c.price * c.count, 0)}
+            Total= ${cartItems.reduce((a, c) => a + c.price * c.count, 0)}
           </div>
         )}
       </>

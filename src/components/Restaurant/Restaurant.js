@@ -23,8 +23,8 @@ export default class Restaurant extends Component {
           </ul>
         </div>
       ));
-    let menus = this.context.menu;
 
+    let menus = this.context.menu;
     const menuItems = menus
       .filter((item) => item.provider_id === parseInt(id))
       .map((food) => (
@@ -32,7 +32,7 @@ export default class Restaurant extends Component {
           <li>{food.name}</li>
           <li>{food.description}</li>
           <li>{food.price} </li>
-          <button onClick={() => this.context.addItemToOrder(food)}>
+          <button onClick={() => this.context.addItemToCart(food)}>
             Add Item to Order
           </button>
         </div>
@@ -48,7 +48,7 @@ export default class Restaurant extends Component {
         </Link>
         <Cart />
 
-        <button onClick={() => this.context.placeOrder(window.history)}>
+        <button onClick={() => this.context.addOrderItem(window.history)}>
           Place order
         </button>
       </div>

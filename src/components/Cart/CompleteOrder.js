@@ -5,10 +5,26 @@ export default class CompleteOrder extends Component {
   static contextType = Context;
 
   render() {
-    const { orderItems } = this.context;
+    const { id } = this.props.match.params;
 
-    console.log(orderItems);
+    const orderplaced = this.context.orderItems
+      .filter((items) => items.order_id === id)
+      .map((list) => (
+        <div key={id}>
+          <ul>
+            <li>{list.name}</li>
+            <li>{list.description}</li>
+            <li>{list.price}</li>
+          </ul>
+        </div>
+      ));
 
-    return <h1>Your order has been placed</h1>;
+    return (
+      <div>
+        {" "}
+        <h1>Your order has been placed</h1>
+        {orderplaced}
+      </div>
+    );
   }
 }
