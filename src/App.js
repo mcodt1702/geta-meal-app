@@ -121,6 +121,7 @@ class App extends Component {
       //4- display the order after it was sent.
 
       const order_id = this.state.orders.length + 1;
+
       console.log(order_id);
 
       this.state.cartItems.forEach((item) => {
@@ -164,13 +165,16 @@ class App extends Component {
           })
           .catch(Error);
       });
-
-      // window.location.replace(`/vendor/order/${id}`);
+      //this.createOrder(newOrderItem)
+      //window.location.replace(`/vendor/order/${order_id}`);
     },
 
     pageRedirect: () => {
       window.location.replace("/vendor/order/sent");
     },
+
+    //createOrder: ()
+
     addItemtoMenu: (e, history) => {
       e.preventDefault();
       let newItem = {
@@ -257,7 +261,20 @@ class App extends Component {
         alert("There was a problem connectig to the server.", err);
         console.log("Handling the error here.", err);
       });
-    console.log(this.state.menu);
+
+    fetch(`${API_ENDPOINT}/orders`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong"); // throw an error
+        }
+        return res;
+      })
+      .then((res) => res.json())
+      .then((orders) => this.setState({ orders }))
+      .catch((err) => {
+        alert("There was a problem connectig to the server.", err);
+        console.log("Handling the error here.", err);
+      });
   }
 
   render() {

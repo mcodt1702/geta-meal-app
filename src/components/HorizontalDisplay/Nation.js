@@ -14,7 +14,7 @@ export default class Nation extends React.Component {
       const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -28,12 +28,11 @@ export default class Nation extends React.Component {
           </Link>
         </div>
       );
-    }
-    if (nation === "Chinese") {
-      const restaurantList = this.context.restaurant
+    } else if (nation === "Chinese") {
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -49,10 +48,10 @@ export default class Nation extends React.Component {
       );
     }
     if (nation === "French") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -69,10 +68,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "FastFood") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -89,10 +88,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Greek") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -109,10 +108,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Indian") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -128,10 +127,10 @@ export default class Nation extends React.Component {
       );
     }
     if (nation === "Italian") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -148,10 +147,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Japanese") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -168,10 +167,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Mexican") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -188,10 +187,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "MEastern") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             <Link to={"/"}>
               <button>Go Back to Main Page</button>
@@ -211,10 +210,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Thai") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));
@@ -231,10 +230,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Other") {
-      const restaurantList = this.context.restaurant
+      const restaurantList = this.context.restaurants
         .filter((list) => list.type === nation)
         .map((list2) => (
-          <div>
+          <div key={list2.id}>
             <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
           </div>
         ));

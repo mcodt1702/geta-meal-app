@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import Context from "../../Context";
 
+//complete order steps
+//get order_id
+//createOrder
+//filter order_items
+//display
+
 export default class CompleteOrder extends Component {
   static contextType = Context;
 
@@ -12,13 +18,11 @@ export default class CompleteOrder extends Component {
       .map((list) => (
         <div key={id}>
           <ul>
-            <li>{list.name}</li>
-            <li>{list.description}</li>
-            <li>{list.price}</li>
+            <li>{list.dish_id}</li>
           </ul>
         </div>
       ));
-
+    console.log(orderplaced);
     return (
       <div>
         {" "}
