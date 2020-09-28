@@ -13,28 +13,45 @@ export default class LoginForm extends Component {
 
   state = { error: null };
 
-  handleSubmitBasicAuth = (ev) => {
-    ev.preventDefault();
+  handleSubmitBasicAuth = (e) => {
+    e.preventDefault();
 
-    const { user_name, password, user_type } = ev.target;
-    console.log(user_name);
-    const restaurant = this.context.restaurants;
-    const validated = restaurant.filter(
-      (valid) => valid.email === user_name.value
-    );
-    console.log(validated);
-    if (validated.length > 0) {
-      TokenService.saveAuthToken(
-        TokenService.makeBasicAuthToken(user_name.value, password.value)
-      );
+    const { user_name, password, user_type } = e.target;
 
-      user_name.value = "";
-      password.value = "";
-      this.context.handleLoginSuccess(user_type.value);
-      this.props.history.push(
-        user_type.value === "rest" ? "/restaurant/dashboard" : "/"
-      );
-    }
+    // if (user_type.value === "rest") {
+    //   const restaurants = this.context.restaurants;
+    //   const validated = restaurants.filter(
+    //     (valid) => valid.email === user_name.value
+    //   );
+    //   console.log(validated);
+    //   if (validated.length > 0) {
+    //     TokenService.saveAuthToken(
+    //       TokenService.makeBasicAuthToken(user_name.value, password.value)
+    //     );
+
+    //     user_name.value = "";
+    //     password.value = "";
+    //     this.context.handleLoginSuccess(user_type.value);
+    //     this.props.history.push("/restaurant/dashboard");
+    //   }
+    // }
+    // if (user_type.value === "user") {
+    //   const consumers = this.context.consumers;
+    //   const validated = consumers.filter(
+    //     (valid) => valid.email === user_name.value
+    //   );
+    //   console.log(validated);
+    //   if (validated.length > 0) {
+    //     TokenService.saveAuthToken(
+    //       TokenService.makeBasicAuthToken(user_name.value, password.value)
+    //     );
+
+    //     user_name.value = "";
+    //     password.value = "";
+    //     this.context.handleLoginSuccess(user_type.value);
+    //     this.props.history.push("/");
+    //   }
+    // }
 
     this.setState({ error: "Invalid Credentials" });
   };
@@ -66,12 +83,7 @@ export default class LoginForm extends Component {
           </p>
           <div className="user_name">
             <label htmlFor="LoginForm__user_name">User name</label>
-            <Input
-              required
-              name="user_name"
-              id="LoginForm__user_name"
-              placeholder="email"
-            ></Input>
+            <Input required name="user_name" id="LoginForm__user_name"></Input>
           </div>
           <div className="password">
             <label htmlFor="LoginForm__password">Password</label>

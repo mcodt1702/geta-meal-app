@@ -14,7 +14,7 @@ import PrivateRoute from "./utilities/PrivateRoute";
 import Restaurant from "./components/Restaurant/Restaurant";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AddMenuItems from "./components/Dashboard/AddMenuItems";
-
+import TokenService from "./services/token-service";
 import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 import CompleteOrder from "./components/Cart/CompleteOrder";
@@ -65,7 +65,10 @@ class App extends Component {
 
       fetch("http://localhost:8000/providers", {
         method: "post",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          authorization: `basic ${TokenService.getAuthToken()}`,
+        },
         body: JSON.stringify(newRestaurant),
       })
         .then((res) => {
@@ -113,17 +116,55 @@ class App extends Component {
       });
     },
 
-    addOrderItem: (history) => {
+    addOrderItem: (restaurant_id) => {
       // 1- I need to create an order and get back an order id
       //2-used that order id to create the item that needs to
       //be added to the order item
       //3- send the orderItem to the database
       //4- display the order after it was sent.
+      let restaurant_idParsed = parseInt(restaurant_id);
 
-      const order_id = this.state.orders.length + 1;
+      let newOrder = {
+        provider_id: restaurant_idParsed,
+        consumer_id: 7,
+        //how do I get the consumer ID from the login?
+        status: "pending",
+      };
 
+      fetch(
+        `${API_ENDPOINT}/orders`,
+
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newOrder),
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              "There was a problem coneectig to the server. We can't create a new Order"
+            ); // throw an error
+          }
+
+          return res;
+        })
+
+        .then((res) => res.json())
+        .then((response) => console.log(response))
+
+        .then((newOrder) => {
+          this.setState({
+            orders: [...this.state.orders, newOrder],
+          });
+        })
+        .catch((err) => {
+          alert("There was a problem connectig to the orders database.", err);
+          console.log("Handling the error here.", err);
+        });
+
+      const order_id = this.state.orders.length;
       console.log(order_id);
-
       this.state.cartItems.forEach((item) => {
         const dish_id = item.id;
         const quantity = item.count;
@@ -135,6 +176,7 @@ class App extends Component {
         };
 
         console.log(newOrderItem);
+
         fetch(
           `${API_ENDPOINT}/orderitems`,
 
@@ -155,25 +197,27 @@ class App extends Component {
           })
 
           .then((res) => res.json())
-          .then((response) => console.log(response))
-
-          .then((newItem) => {
+          .then((newOrderItem) => {
             this.setState({
-              orderItems: [...this.state.orderItems, newItem],
+              orderItems: [...this.state.orderItems, newOrderItem],
             });
-            console.log(this.state.orderItems);
           })
-          .catch(Error);
+          .catch((err) => {
+            alert("There was a problem connectig to order items server.", err);
+            console.log("Handling the error here.", err);
+          });
+
+        this.setState({
+          cartItems: [],
+        });
       });
       //this.createOrder(newOrderItem)
-      //window.location.replace(`/vendor/order/${order_id}`);
+      window.location.replace(`/vendor/order/${order_id}`);
     },
 
     pageRedirect: () => {
       window.location.replace("/vendor/order/sent");
     },
-
-    //createOrder: ()
 
     addItemtoMenu: (e, history) => {
       e.preventDefault();
@@ -231,21 +275,27 @@ class App extends Component {
       .then((res) => res.json())
       .then((users) => this.setState({ users }))
       .catch((err) => {
-        alert("There was a problem connectig to the server.", err);
+        alert(
+          "There was a problem connectig to the server getting consumers.",
+          err
+        );
         console.log("Handling the error here.", err);
       });
 
     fetch(`${API_ENDPOINT}/providers`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Something went wrong"); // throw an error
+          throw new Error("Something went wrong getting providers"); // throw an error
         }
         return res;
       })
       .then((res) => res.json())
       .then((restaurants) => this.setState({ restaurants }))
       .catch((err) => {
-        alert("There was a problem connectig to the server.", err);
+        alert(
+          "There was a problem connectig to the server getting providers.",
+          err
+        );
         console.log("Handling the error here.", err);
       });
     fetch(`${API_ENDPOINT}/dishes`)
@@ -258,7 +308,10 @@ class App extends Component {
       .then((res) => res.json())
       .then((menu) => this.setState({ menu }))
       .catch((err) => {
-        alert("There was a problem connectig to the server.", err);
+        alert(
+          "There was a problem connectig to the server getting restaurants.",
+          err
+        );
         console.log("Handling the error here.", err);
       });
 

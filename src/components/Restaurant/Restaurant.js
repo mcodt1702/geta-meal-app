@@ -8,7 +8,7 @@ export default class Restaurant extends Component {
 
   render() {
     let { restaurants } = this.context;
-    let id = this.props.match.params.id;
+    const id = parseInt(this.props.match.params.id);
 
     const venue = restaurants
       .filter((rest) => rest.id === parseInt(id))
@@ -48,7 +48,7 @@ export default class Restaurant extends Component {
         </Link>
         <Cart />
 
-        <button onClick={() => this.context.addOrderItem(window.history)}>
+        <button onClick={() => this.context.addOrderItem(id)}>
           Place order
         </button>
       </div>
