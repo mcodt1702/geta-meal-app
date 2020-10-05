@@ -19,7 +19,7 @@ import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 import CompleteOrder from "./components/Cart/CompleteOrder";
 import Nation from "./components/HorizontalDisplay/Nation";
-import UserAdmin from "./components/Admin/userAdmin";
+
 import DealsPage from "./components/Deals/DealsPage";
 import Config from "./config";
 
@@ -298,8 +298,11 @@ class App extends Component {
         user_type: type,
         currentUserId: id,
       });
-
-      window.location.replace(`/restaurant/dashboard/${id}`);
+      if (type.value === "provider") {
+        window.location.replace(`/restaurant/dashboard/${id}`);
+      } else {
+        window.location.replace("/");
+      }
     },
   };
   //   updateStatus: (orderID) => {},
@@ -437,11 +440,7 @@ class App extends Component {
             path={"/vendor/order/:id"}
             component={CompleteOrder}
           ></Route>
-          <Route
-            exact
-            path={"/vendor/order/sent"}
-            component={UserAdmin}
-          ></Route>
+
           <Route path={"/"} component={Footer}></Route>
         </div>
       </Context.Provider>
