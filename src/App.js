@@ -67,16 +67,18 @@ class App extends Component {
             ); // throw an error
           }
 
-          return res;
+          return res.json();
         })
-        .then((res) => res.json())
         .then((newUser) => {
-          this.setState({
-            users: [...this.state.users, newUser],
-          });
+          this.setState(
+            {
+              users: [...this.state.users, newUser],
+            },
+            () => {
+              window.location.replace("/");
+            }
+          );
         });
-
-      window.location.replace("/");
     },
 
     createRestaurant: (e, history) => {
