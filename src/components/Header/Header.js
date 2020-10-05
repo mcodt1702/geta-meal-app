@@ -40,7 +40,7 @@ export default class Header extends React.Component {
     return (
       <header className="headerstyling">
         <div className="hambu">
-          <a id="nav-toggle" href="./menu">
+          <a id="nav-toggle" href="./">
             &#9776;
           </a>
         </div>
