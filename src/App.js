@@ -34,6 +34,10 @@ class App extends Component {
     orderItems: [],
     user_type: null,
     users: [],
+    tempOrders: [],
+    numOfCartItems: 0,
+    numOfCompleted: 0,
+    currentUserId: [],
 
     createUser: (e, history) => {
       e.preventDefault();
@@ -43,9 +47,36 @@ class App extends Component {
         address: e.target.address.value,
         zip: e.target.zip.value,
         email: e.target.email.value,
+        phone: e.target.phone.value,
         password: e.target.password.value,
       };
       console.log(newUser);
+      fetch(
+        "http://localhost:8000/consumers",
+
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newUser),
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              "There was a problem coneectig to the server. We can't create a new Order"
+            ); // throw an error
+          }
+
+          return res;
+        })
+        .then((res) => res.json())
+        .then((newUser) => {
+          this.setState({
+            users: [...this.state.users, newUser],
+          });
+        });
+
+      window.location.replace("/");
     },
 
     createRestaurant: (e, history) => {
@@ -72,8 +103,8 @@ class App extends Component {
         body: JSON.stringify(newRestaurant),
       })
         .then((res) => {
-          if (!res.ok) {
-            throw new Error("Something went wrong"); // throw an error
+          if ((res.status = "401")) {
+            throw new Error("Please Register and login"); // throw an error
           }
           return res;
         })
@@ -86,7 +117,7 @@ class App extends Component {
         })
         .catch((err) => {
           alert(
-            "There was a problem coneectig to the server. We can't create a new Note",
+            "There was a problem coneectig to the server. We can't create a new Restaurant",
             err
           );
         });
@@ -123,96 +154,102 @@ class App extends Component {
       //3- send the orderItem to the database
       //4- display the order after it was sent.
       let restaurant_idParsed = parseInt(restaurant_id);
-
+      //how do I get the consumer ID from the login?*************************************************
+      //********User adds first item to the order -> fetch POST to create a new order, put that in state, -> now I can add items to the cart.
+      //5:19User adds first item to the order -> fetch POST to create a new order, put that in state, -> now I can add items to the cart.
+      //Once the user places the order, now I can post all those order_items to the BE using the currentOrder’s Id*************************************************************************************
+      //***
       let newOrder = {
         provider_id: restaurant_idParsed,
-        consumer_id: 7,
-        //how do I get the consumer ID from the login?
         status: "pending",
       };
 
-      fetch(
-        `${API_ENDPOINT}/orders`,
-
+      this.setState(
         {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newOrder),
-        }
-      )
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(
-              "There was a problem coneectig to the server. We can't create a new Order"
-            ); // throw an error
-          }
+          numOfCartItems: this.state.cartItems.length,
+        },
+        () => {
+          fetch(
+            `${API_ENDPOINT}/orders`,
 
-          return res;
-        })
-
-        .then((res) => res.json())
-        .then((response) => console.log(response))
-
-        .then((newOrder) => {
-          this.setState({
-            orders: [...this.state.orders, newOrder],
-          });
-        })
-        .catch((err) => {
-          alert("There was a problem connectig to the orders database.", err);
-          console.log("Handling the error here.", err);
-        });
-
-      const order_id = this.state.orders.length;
-      console.log(order_id);
-      this.state.cartItems.forEach((item) => {
-        const dish_id = item.id;
-        const quantity = item.count;
-
-        let newOrderItem = {
-          order_id: `${order_id}`,
-          dish_id: `${dish_id}`,
-          qty: `${quantity}`,
-        };
-
-        console.log(newOrderItem);
-
-        fetch(
-          `${API_ENDPOINT}/orderitems`,
-
-          {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newOrderItem),
-          }
-        )
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error(
-                "There was a problem coneectig to the server. We can't create a new Order"
-              ); // throw an error
+            {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json",
+                authorization: `bearer ${TokenService.getAuthToken()}`,
+              },
+              body: JSON.stringify(newOrder),
             }
+          )
+            .then((res) => {
+              if (!res.ok) {
+                throw new Error(
+                  "There was a problem coneectig to the server. We can't create a new Order"
+                ); // throw an error
+              }
 
-            return res;
-          })
+              return res.json();
+            })
+            .then((newOrder) => {
+              const order_id = newOrder.id;
+              console.log(order_id);
+              this.state.cartItems.forEach((item) => {
+                const dish_id = item.id;
+                const quantity = item.count;
 
-          .then((res) => res.json())
-          .then((newOrderItem) => {
-            this.setState({
-              orderItems: [...this.state.orderItems, newOrderItem],
+                let newOrderItem = {
+                  order_id: `${order_id}`,
+                  dish_id: `${dish_id}`,
+                  qty: `${quantity}`,
+                };
+
+                console.log(newOrderItem);
+
+                fetch(
+                  `${API_ENDPOINT}/orderitems`,
+
+                  {
+                    method: "post",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newOrderItem),
+                  }
+                )
+                  .then((res) => {
+                    if (!res.ok) {
+                      throw new Error(
+                        "There was a problem coneectig to the server. We can't create a new Order"
+                      ); // throw an error
+                    }
+
+                    return res.json();
+                  })
+                  .then((newOrderItem) => {
+                    this.setState(
+                      {
+                        orderItems: [...this.state.orderItems, newOrderItem],
+                      },
+                      this.checkCompleted(order_id)
+                    );
+                  })
+                  .catch((err) => {
+                    alert(
+                      "There was a problem connectig to order items server.",
+                      err
+                    );
+                    console.log("Handling the error here.", err);
+                  });
+              });
+              //this.createOrder(newOrderItem)
+            })
+            .catch((err) => {
+              alert(
+                "There was a problem connectig to the orders database.",
+                err
+              );
+              console.log("Handling the error here.", err);
             });
-          })
-          .catch((err) => {
-            alert("There was a problem connectig to order items server.", err);
-            console.log("Handling the error here.", err);
-          });
-
-        this.setState({
-          cartItems: [],
-        });
-      });
-      //this.createOrder(newOrderItem)
-      window.location.replace(`/vendor/order/${order_id}`);
+        }
+      );
     },
 
     pageRedirect: () => {
@@ -255,14 +292,40 @@ class App extends Component {
       history.push("/login");
     },
 
-    handleLoginSuccess: (type) => {
+    handleLoginSuccess: (type, id) => {
       console.log(type);
       this.setState({
         user_type: type,
+        currentUserId: id,
       });
+
+      window.location.replace(`/restaurant/dashboard/${id}`);
     },
   };
+  //   updateStatus: (orderID) => {},
+  // };
 
+  checkCompleted = (order_id) => {
+    this.setState(
+      {
+        numOfCompleted: this.state.numOfCompleted + 1,
+      },
+      () => {
+        if (this.state.numOfCompleted >= this.state.numOfCartItems) {
+          this.setState(
+            {
+              numOfCartItems: 0,
+              numOfCompleted: 0,
+              cartItems: [],
+            },
+            () => {
+              window.location.replace(`/vendor/order/${order_id}`);
+            }
+          );
+        }
+      }
+    );
+  };
   componentDidMount() {
     console.log(API_ENDPOINT);
     fetch(`${API_ENDPOINT}/consumers`)
@@ -349,7 +412,7 @@ class App extends Component {
           ></Route>
           <PrivateRoute
             exact
-            path={"/restaurant/dashboard"}
+            path={"/restaurant/dashboard/:id"}
             component={Dashboard}
           ></PrivateRoute>
           <PrivateRoute

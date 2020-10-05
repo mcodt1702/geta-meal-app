@@ -10,7 +10,7 @@ export default class Deals extends Component {
       <div id="topPage">
         <h2>Deals</h2>
         <ul>
-          {this.context.restaurant.map((rest) => (
+          {this.context.restaurants.map((rest) => (
             <li key={rest.id}>
               <div className="prov">
                 <Link to={`vendor/${rest.id}`}>

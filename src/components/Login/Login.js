@@ -3,6 +3,7 @@ import TokenService from "../../services/token-service";
 import { Button, Input } from "../../utilities/utilities";
 import Context from "../../Context";
 import "./Login.css";
+import AuthApiService from "../../services/auth-api-service";
 
 export default class LoginForm extends Component {
   static defaultProps = {
@@ -13,47 +14,25 @@ export default class LoginForm extends Component {
 
   state = { error: null };
 
-  handleSubmitBasicAuth = (e) => {
-    e.preventDefault();
+  handleSubmitJwtAuth = (ev) => {
+    ev.preventDefault();
+    this.setState({ error: null });
+    const { user_name, password, user_type } = ev.target;
 
-    const { user_name, password, user_type } = e.target;
-
-    // if (user_type.value === "rest") {
-    //   const restaurants = this.context.restaurants;
-    //   const validated = restaurants.filter(
-    //     (valid) => valid.email === user_name.value
-    //   );
-    //   console.log(validated);
-    //   if (validated.length > 0) {
-    //     TokenService.saveAuthToken(
-    //       TokenService.makeBasicAuthToken(user_name.value, password.value)
-    //     );
-
-    //     user_name.value = "";
-    //     password.value = "";
-    //     this.context.handleLoginSuccess(user_type.value);
-    //     this.props.history.push("/restaurant/dashboard");
-    //   }
-    // }
-    // if (user_type.value === "user") {
-    //   const consumers = this.context.consumers;
-    //   const validated = consumers.filter(
-    //     (valid) => valid.email === user_name.value
-    //   );
-    //   console.log(validated);
-    //   if (validated.length > 0) {
-    //     TokenService.saveAuthToken(
-    //       TokenService.makeBasicAuthToken(user_name.value, password.value)
-    //     );
-
-    //     user_name.value = "";
-    //     password.value = "";
-    //     this.context.handleLoginSuccess(user_type.value);
-    //     this.props.history.push("/");
-    //   }
-    // }
-
-    this.setState({ error: "Invalid Credentials" });
+    AuthApiService.postLogin({
+      email: user_name.value,
+      password: password.value,
+      user_type: user_type.value,
+    })
+      .then((res) => {
+        user_name.value = "";
+        password.value = "";
+        TokenService.saveAuthToken(res.authToken);
+        this.context.handleLoginSuccess(user_type, res.id);
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   };
 
   render() {
@@ -61,14 +40,14 @@ export default class LoginForm extends Component {
     return (
       <section className="LoginPage">
         <h2>Login</h2>
-        <form className="LoginForm" onSubmit={this.handleSubmitBasicAuth}>
+        <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
           <div role="alert">{error && <p className="red">{error}</p>}</div>
           <p>REVIEWER USE= username: joe@pizza.com, password: 1</p>
           <p>
             <input
               type="radio"
               name="user_type"
-              value="user"
+              value="consumer"
               id="user_type_user"
               defaultChecked
             />
@@ -76,7 +55,7 @@ export default class LoginForm extends Component {
             <input
               type="radio"
               name="user_type"
-              value="rest"
+              value="provider"
               id="user_type_rest"
             />
             <label htmlFor="user_type_rest">Restaurant</label>

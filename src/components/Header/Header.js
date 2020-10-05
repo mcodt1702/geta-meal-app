@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import TokenService from "../../services/token-service";
 import { Hyph } from "../../utilities/utilities";
+import Context from "../../Context";
 
 export default class Header extends React.Component {
+  static contextType = Context;
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
     this.props.history.push("/");
@@ -16,8 +18,10 @@ export default class Header extends React.Component {
         <Link onClick={this.handleLogoutClick} to="/">
           Logout
         </Link>
-        {<Hyph />}
-        <Link to="/restaurant/dashboard">Account</Link>
+        {/* {<Hyph />} */}
+        {/* <Link to={`/restaurant/dashboard/${this.context.currentUserId}`}>
+          Account
+        </Link> */}
       </div>
     );
   }

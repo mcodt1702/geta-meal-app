@@ -6,10 +6,11 @@ import "./Dashboard.css";
 export default class Dashboard extends Component {
   static contextType = Context;
   render() {
-    let { restaurant } = this.context;
-    let id = this.context.user.id;
+    let { restaurants } = this.context;
+    const id = parseInt(this.props.match.params.id);
 
-    const venue = restaurant
+    console.log(id);
+    const venue = restaurants
       .filter((rest) => rest.id === parseInt(id))
       .map((rest) => (
         <div key={rest.id}>
@@ -40,14 +41,37 @@ export default class Dashboard extends Component {
         </div>
       ));
 
+    const pastOrders = this.context.orders
+      .filter((order) => order.provider_id === id)
+      .map((orders) => (
+        <div key={orders.id} className="ordersList">
+          <li>
+            Time Created:{orders.created} Order id: {orders.id}
+          </li>
+
+          <li>
+            Status: {orders.status}
+            <button onClick={() => this.context.updateStatus(orders.id)}>
+              Update Status
+            </button>
+          </li>
+        </div>
+      ));
+
+    // const foodItems = this.context.order_items
+    //   .filter((oi) => oi.order.id === orders.id)
+    //   .map((items) => <div></div>);
+
     return (
       <div id="rest">
         <h2>Account Profile</h2>
+        <p>You can add items to your menu or check you orders here:</p>
         {venue}
         {menuItems}
         <Link to={`/restaurant/dashboard/additems/${id}/`}>
           <button>Add Item to Menu</button>
         </Link>
+        {pastOrders}
       </div>
     );
   }
