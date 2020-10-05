@@ -52,7 +52,7 @@ class App extends Component {
       };
       console.log(newUser);
       fetch(
-        "http://localhost:8000/consumers",
+        `${API_ENDPOINT}/consumers`,
 
         {
           method: "post",
@@ -94,7 +94,7 @@ class App extends Component {
       };
       console.log(newRestaurant);
 
-      fetch("http://localhost:8000/providers", {
+      fetch(`${API_ENDPOINT}/providers`, {
         method: "post",
         headers: {
           "content-type": "application/json",
@@ -330,7 +330,6 @@ class App extends Component {
     );
   };
   componentDidMount() {
-    console.log(API_ENDPOINT);
     fetch(`${API_ENDPOINT}/consumers`)
       .then((res) => {
         if (!res.ok) {
