@@ -105,17 +105,23 @@ class App extends Component {
         body: JSON.stringify(newRestaurant),
       })
         .then((res) => {
-          if ((res.status = "401")) {
-            throw new Error("Please Register and login"); // throw an error
+          if (!res.ok) {
+            throw new Error(
+              "There was a problem coneectig to the server. We can't create a new Order"
+            ); // throw an error
           }
-          return res;
-        })
 
-        .then((res) => res.json())
+          return res.json();
+        })
         .then((newRestaurant) => {
-          this.setState({
-            restaurants: [...this.state.restaurants, newRestaurant],
-          });
+          this.setState(
+            {
+              restaurants: [...this.state.restaurants, newRestaurant],
+            },
+            () => {
+              history.push("/restaurant/dashboard");
+            }
+          );
         })
         .catch((err) => {
           alert(
@@ -123,7 +129,6 @@ class App extends Component {
             err
           );
         });
-      history.push("/restaurant/dashboard");
     },
 
     addItemToCart: (food) => {
