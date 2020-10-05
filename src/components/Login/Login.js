@@ -42,7 +42,7 @@ export default class LoginForm extends Component {
         <h2>Login</h2>
         <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
           <div role="alert">{error && <p className="red">{error}</p>}</div>
-          <p>REVIEWER USE= username: joe@pizza.com, password: 1</p>
+          <p>REVIEWER USE= username: joe@pizza.com, password: P@ssword1234</p>
           <p>
             <input
               type="radio"
