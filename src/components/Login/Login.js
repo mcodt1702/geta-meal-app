@@ -49,8 +49,8 @@ export default class LoginForm extends Component {
           </p>
           <p>
             Demo Restaurant - <br />
-            username: demo@restaurant.com <br />
-            password: P@ssword1234
+            username: toast@brew.com <br />
+            password: tac44
           </p>
           <p>
             <input
