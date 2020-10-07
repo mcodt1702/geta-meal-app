@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import RegisterUser from "./components/Registration/RegisterUser";
 import RegisterRestaurant from "./components/Registration/RegisterRest";
 import TopPage from "./components/TopPage/TopPage";
+import LandingPage from "./components/LandingPage/landingPage";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./utilities/PrivateRoute";
 import Restaurant from "./components/Restaurant/Restaurant";
@@ -407,8 +408,9 @@ class App extends Component {
       <Context.Provider value={this.state}>
         <div>
           <Route path={"/"} component={Header}></Route>
-          <Route exact path={"/"} component={Type}></Route>
-          <Route exact path={"/"} component={Main}></Route>
+          <Route exact path={"/"} component={LandingPage}></Route>
+          <Route exact path={"/food"} component={Type}></Route>
+          <Route exact path={"/food"} component={Main}></Route>
           <Route path={"/topRated"} component={TopPage}></Route>
           <Route path={"/deals"} component={DealsPage}></Route>
           <Route path={"/login"} component={Login}></Route>
@@ -441,11 +443,11 @@ class App extends Component {
           ></PrivateRoute>
           <Route exact path={"/type/:nation"} component={Nation}></Route>
           <Route exact path={"/vendor/:id"} component={Restaurant}></Route>
-          <Route
+          <PrivateRoute
             exact
             path={"/vendor/order/:id"}
             component={CompleteOrder}
-          ></Route>
+          ></PrivateRoute>
 
           <Route path={"/"} component={Footer}></Route>
         </div>

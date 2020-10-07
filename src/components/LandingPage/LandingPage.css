@@ -1,0 +1,37 @@
+.landing {
+  background-image: url("/images/kissclipart-new-york-buildings-silhouette-clipart-manhattan-sk-2d62fe04001bb006.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center bottom;
+  height: 70vh;
+  text-align: center;
+}
+.landing h1 {
+  margin-bottom: 5vh;
+}
+#gStarted {
+  background-color: purple;
+  width: 30vh;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+  height: 5vh;
+  color: antiquewhite;
+  padding: 5vh;
+}
+
+@media screen and (min-width: 770px) {
+  .landing {
+    height: 80vh;
+  }
+
+  #gStarted {
+    height: 3vh;
+  }
+
+  .landing h1 {
+    margin-bottom: 3vh;
+  }
+}

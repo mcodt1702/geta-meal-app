@@ -1,8 +1,20 @@
 footer {
   background-color: rgb(68, 67, 67);
-  height: 100vh;
+  height: 20vh;
+  text-size-adjust: 3px;
+}
+.about {
+  font-size: small;
+  width: 70%;
+  text-align: center;
+  margin-left: auto;
+  color: whitesmoke;
+  margin-right: auto;
+}
+footer h2 {
+  margin-bottom: 15px;
 }
 
-footer h2 {
-  margin: 0px;
+.footerstyling {
+  text-align: center;
 }
