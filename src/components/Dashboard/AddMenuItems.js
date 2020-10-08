@@ -57,7 +57,9 @@ export default class renderUser extends React.Component {
   render() {
     return (
       <form
-        onSubmit={(e) => this.context.addItemtoMenu(e, this.props.history)}
+        onSubmit={(e) =>
+          this.context.addItemtoMenu(e, this.props.match.params.id)
+        }
         id="userform"
       >
         <div>

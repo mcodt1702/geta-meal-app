@@ -247,7 +247,6 @@ class App extends Component {
                     console.log("Handling the error here.", err);
                   });
               });
-              //this.createOrder(newOrderItem)
             })
             .catch((err) => {
               alert(
@@ -264,18 +263,18 @@ class App extends Component {
       window.location.replace("/vendor/order/sent");
     },
 
-    addItemtoMenu: (e, history) => {
+    addItemtoMenu: (e, id) => {
       e.preventDefault();
+
       let newItem = {
-        id: this.state.menu.length + 1,
-        provider_id: this.state.user.id,
+        provider_id: id,
         item: e.target.item.value,
         description: e.target.description.value,
         price: e.target.price.value,
       };
       console.log(newItem);
       this.setState({ menu: [...this.state.menu, newItem] });
-      history.push("/restaurant/dashboard");
+      window.location.replace(`/restaurant/dashboard/${id}`);
     },
 
     modifyItemtoMenu: (e, history) => {

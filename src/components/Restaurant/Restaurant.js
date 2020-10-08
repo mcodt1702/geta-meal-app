@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Context from "../../Context";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
+import "./Restaurant.css";
 
 export default class Restaurant extends Component {
   static contextType = Context;
@@ -13,7 +14,7 @@ export default class Restaurant extends Component {
     const venue = restaurants
       .filter((rest) => rest.id === parseInt(id))
       .map((rest) => (
-        <div key={id}>
+        <div className="restident" key={id}>
           <h3>Menu for {rest.name}</h3>
           <ul key={id}>
             {" "}
