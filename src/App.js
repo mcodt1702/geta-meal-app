@@ -317,32 +317,25 @@ class App extends Component {
     },
 
     deleteItemtoMenu: (id) => {
-      fetch(
-        `${API_ENDPOINT}/dishes`,
-
-        {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `bearer ${TokenService.getAuthToken()}`,
-          },
-          body: JSON.stringify(id),
-        }
-      ).then((res) => {
-        if (!res.ok) {
-          throw new Error(
-            "There was a problem coneectig to the server. We can't delete this dish"
-          );
-        }
-
-        return res.json();
-      });
-
       console.log(id);
+      // fetch(
+      //   `${API_ENDPOINT}/dishes/${id}`,
+
+      //   {
+      //     method: "post",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       authorization: `bearer ${TokenService.getAuthToken()}`,
+      //     },
+      //     body: JSON.stringify(id),
+      //   }
+      // );
+
       this.setState({
         menu: this.state.menu.filter((item) => item.id !== id),
       });
     },
+
     handleRegistrationSuccess: (user) => {
       const { history } = this.props;
       history.push("/loginRest");

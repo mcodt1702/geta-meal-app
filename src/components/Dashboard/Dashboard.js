@@ -9,7 +9,6 @@ export default class Dashboard extends Component {
     let { restaurants } = this.context;
     const id = parseInt(this.props.match.params.id);
 
-    console.log(id);
     const venue = restaurants
       .filter((rest) => rest.id === parseInt(id))
       .map((rest) => (
