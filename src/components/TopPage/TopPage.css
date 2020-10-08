@@ -4,11 +4,21 @@
 }
 
 #topPage {
-  background-color: aliceblue;
+  background-color: white;
 }
 
 #topPage ul {
-  margin: 20px;
+  margin: 0px;
+  padding: 0;
   text-align: center;
   list-style-type: none;
+  margin-top: 12px;
+}
+
+#topPage a {
+  color: black;
+}
+
+topPage li {
+  margin-top: 10px;
 }
