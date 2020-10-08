@@ -23,6 +23,7 @@ import Nation from "./components/HorizontalDisplay/Nation";
 import LoginRestaurant from "./components/Login/LoginRestaurant";
 import DealsPage from "./components/Deals/DealsPage";
 import Config from "./config";
+import PleaseLogIn from "./components/Restaurant/pleaseSingin";
 
 const { API_ENDPOINT } = Config;
 
@@ -33,12 +34,14 @@ class App extends Component {
     orders: [],
     cartItems: [],
     orderItems: [],
-    user_type: null,
     users: [],
+
     tempOrders: [],
     numOfCartItems: 0,
     numOfCompleted: 0,
+
     currentUserId: [],
+    user_type: null,
 
     createUser: (e, history) => {
       e.preventDefault();
@@ -156,109 +159,103 @@ class App extends Component {
     },
 
     addOrderItem: (restaurant_id) => {
-      // 1- I need to create an order and get back an order id
-      //2-used that order id to create the item that needs to
-      //be added to the order item
-      //3- send the orderItem to the database
-      //4- display the order after it was sent.
-      let restaurant_idParsed = parseInt(restaurant_id);
-      //how do I get the consumer ID from the login?*************************************************
-      //********User adds first item to the order -> fetch POST to create a new order, put that in state, -> now I can add items to the cart.
-      //5:19User adds first item to the order -> fetch POST to create a new order, put that in state, -> now I can add items to the cart.
-      //Once the user places the order, now I can post all those order_items to the BE using the currentOrder’s Id*************************************************************************************
-      //***
-      let newOrder = {
-        provider_id: restaurant_idParsed,
-        status: "pending",
-      };
+      if (this.context.user_type !== "consumer") {
+        window.location.replace("/pli");
+      } else {
+        let restaurant_idParsed = parseInt(restaurant_id);
 
-      this.setState(
-        {
-          numOfCartItems: this.state.cartItems.length,
-        },
-        () => {
-          fetch(
-            `${API_ENDPOINT}/orders`,
+        let newOrder = {
+          provider_id: restaurant_idParsed,
+          status: "pending",
+        };
 
-            {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json",
-                authorization: `bearer ${TokenService.getAuthToken()}`,
-              },
-              body: JSON.stringify(newOrder),
-            }
-          )
-            .then((res) => {
-              if (!res.ok) {
-                throw new Error(
-                  "There was a problem coneectig to the server. We can't create a new Order"
-                ); // throw an error
+        this.setState(
+          {
+            numOfCartItems: this.state.cartItems.length,
+          },
+          () => {
+            fetch(
+              `${API_ENDPOINT}/orders`,
+
+              {
+                method: "post",
+                headers: {
+                  "Content-Type": "application/json",
+                  authorization: `bearer ${TokenService.getAuthToken()}`,
+                },
+                body: JSON.stringify(newOrder),
               }
+            )
+              .then((res) => {
+                if (!res.ok) {
+                  throw new Error(
+                    "There was a problem coneectig to the server. We can't create a new Order"
+                  ); // throw an error
+                }
 
-              return res.json();
-            })
-            .then((newOrder) => {
-              const order_id = newOrder.id;
-              console.log(order_id);
-              this.state.cartItems.forEach((item) => {
-                const dish_id = item.id;
-                const quantity = item.count;
+                return res.json();
+              })
+              .then((newOrder) => {
+                const order_id = newOrder.id;
+                console.log(order_id);
+                this.state.cartItems.forEach((item) => {
+                  const dish_id = item.id;
+                  const quantity = item.count;
 
-                let newOrderItem = {
-                  order_id: `${order_id}`,
-                  dish_id: `${dish_id}`,
-                  qty: `${quantity}`,
-                };
+                  let newOrderItem = {
+                    order_id: `${order_id}`,
+                    dish_id: `${dish_id}`,
+                    qty: `${quantity}`,
+                  };
 
-                console.log(newOrderItem);
+                  console.log(newOrderItem);
 
-                fetch(
-                  `${API_ENDPOINT}/orderitems`,
+                  fetch(
+                    `${API_ENDPOINT}/orderitems`,
 
-                  {
-                    method: "post",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(newOrderItem),
-                  }
-                )
-                  .then((res) => {
-                    if (!res.ok) {
-                      throw new Error(
-                        "There was a problem coneectig to the server. We can't create a new Order"
-                      ); // throw an error
+                    {
+                      method: "post",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(newOrderItem),
                     }
+                  )
+                    .then((res) => {
+                      if (!res.ok) {
+                        throw new Error(
+                          "There was a problem coneectig to the server. We can't create a new Order"
+                        ); // throw an error
+                      }
 
-                    return res.json();
-                  })
-                  .then((newOrderItem) => {
-                    this.setState(
-                      {
-                        orderItems: [...this.state.orderItems, newOrderItem],
-                      },
-                      this.checkCompleted(order_id)
-                    );
-                  })
-                  .catch((err) => {
-                    alert(
-                      "There was a problem connectig to order items server.",
-                      err
-                    );
-                    console.log("Handling the error here.", err);
-                  });
+                      return res.json();
+                    })
+                    .then((newOrderItem) => {
+                      this.setState(
+                        {
+                          orderItems: [...this.state.orderItems, newOrderItem],
+                        },
+                        this.checkCompleted(order_id)
+                      );
+                    })
+                    .catch((err) => {
+                      alert(
+                        "There was a problem connectig to order items server.",
+                        err
+                      );
+                      console.log("Handling the error here.", err);
+                    });
+                });
+              })
+              .catch((err) => {
+                alert(
+                  "There was a problem connectig to the orders database.",
+                  err
+                );
+                console.log("Handling the error here.", err);
               });
-            })
-            .catch((err) => {
-              alert(
-                "There was a problem connectig to the orders database.",
-                err
-              );
-              console.log("Handling the error here.", err);
-            });
-        }
-      );
+          }
+        );
+      }
     },
-
     pageRedirect: () => {
       window.location.replace("/vendor/order/sent");
     },
@@ -268,13 +265,44 @@ class App extends Component {
 
       let newItem = {
         provider_id: id,
-        item: e.target.item.value,
+        name: e.target.item.value,
         description: e.target.description.value,
         price: e.target.price.value,
       };
       console.log(newItem);
-      this.setState({ menu: [...this.state.menu, newItem] });
-      window.location.replace(`/restaurant/dashboard/${id}`);
+
+      fetch(
+        `${API_ENDPOINT}/dishes`,
+
+        {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${TokenService.getAuthToken()}`,
+          },
+          body: JSON.stringify(newItem),
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              "There was a problem coneectig to the server. We can't create a new Order"
+            ); // throw an error
+          }
+
+          return res.json();
+        })
+
+        .then((newdish) => {
+          this.setState(
+            {
+              menu: [...this.state.menu, newdish],
+            },
+            () => {
+              window.location.replace(`/restaurant/dashboard/${id}`);
+            }
+          );
+        });
     },
 
     modifyItemtoMenu: (e, history) => {
@@ -289,6 +317,27 @@ class App extends Component {
     },
 
     deleteItemtoMenu: (id) => {
+      fetch(
+        `${API_ENDPOINT}/dishes`,
+
+        {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `bearer ${TokenService.getAuthToken()}`,
+          },
+          body: JSON.stringify(id),
+        }
+      ).then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            "There was a problem coneectig to the server. We can't delete this dish"
+          );
+        }
+
+        return res.json();
+      });
+
       console.log(id);
       this.setState({
         menu: this.state.menu.filter((item) => item.id !== id),
@@ -421,6 +470,11 @@ class App extends Component {
             path={"/register/restaurant"}
             component={RegisterRestaurant}
           ></Route>
+          <PrivateRoute
+            exact
+            path={"/pli"}
+            component={PleaseLogIn}
+          ></PrivateRoute>
           <PrivateRoute
             exact
             path={"/restaurant/dashboard/:id"}
