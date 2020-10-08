@@ -22,7 +22,7 @@ export default class CompleteOrder extends Component {
           </ul>
         </div>
       ));
-    console.log(orderplaced);
+
     return (
       <div>
         {" "}

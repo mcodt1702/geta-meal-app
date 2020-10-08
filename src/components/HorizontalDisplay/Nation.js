@@ -8,7 +8,6 @@ export default class Nation extends React.Component {
 
   render() {
     const { nation } = this.props.match.params;
-    console.log(nation);
 
     if (nation === "American") {
       const wehaveit = this.context.restaurants.filter(

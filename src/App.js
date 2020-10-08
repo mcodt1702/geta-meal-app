@@ -54,7 +54,7 @@ class App extends Component {
         phone: e.target.phone.value,
         password: e.target.password.value,
       };
-      console.log(newUser);
+
       fetch(
         `${API_ENDPOINT}/consumers`,
 
@@ -98,7 +98,6 @@ class App extends Component {
         phone: e.target.phone.value,
         type: e.target.type.value,
       };
-      console.log(newRestaurant);
 
       fetch(`${API_ENDPOINT}/providers`, {
         method: "post",
@@ -197,7 +196,7 @@ class App extends Component {
               })
               .then((newOrder) => {
                 const order_id = newOrder.id;
-                console.log(order_id);
+
                 this.state.cartItems.forEach((item) => {
                   const dish_id = item.id;
                   const quantity = item.count;
@@ -207,8 +206,6 @@ class App extends Component {
                     dish_id: `${dish_id}`,
                     qty: `${quantity}`,
                   };
-
-                  console.log(newOrderItem);
 
                   fetch(
                     `${API_ENDPOINT}/orderitems`,
@@ -241,7 +238,6 @@ class App extends Component {
                         "There was a problem connectig to order items server.",
                         err
                       );
-                      console.log("Handling the error here.", err);
                     });
                 });
               })
@@ -250,7 +246,6 @@ class App extends Component {
                   "There was a problem connectig to the orders database.",
                   err
                 );
-                console.log("Handling the error here.", err);
               });
           }
         );
@@ -269,7 +264,6 @@ class App extends Component {
         description: e.target.description.value,
         price: e.target.price.value,
       };
-      console.log(newItem);
 
       fetch(
         `${API_ENDPOINT}/dishes`,
@@ -312,12 +306,11 @@ class App extends Component {
         description: e.target.description.value,
         price: e.target.price.value,
       };
-      console.log(modifiedItem);
+
       history.push("/restaurant/dashboard");
     },
 
     deleteItemtoMenu: (id) => {
-      console.log(id);
       // fetch(
       //   `${API_ENDPOINT}/dishes/${id}`,
 
@@ -342,7 +335,6 @@ class App extends Component {
     },
 
     handleLoginSuccess: (type, id) => {
-      console.log(type);
       this.setState({
         user_type: type,
         currentUserId: id,
@@ -354,8 +346,6 @@ class App extends Component {
       }
     },
   };
-  //   updateStatus: (orderID) => {},
-  // };
 
   checkCompleted = (order_id) => {
     this.setState(
@@ -393,7 +383,6 @@ class App extends Component {
           "There was a problem connectig to the server getting consumers.",
           err
         );
-        console.log("Handling the error here.", err);
       });
 
     fetch(`${API_ENDPOINT}/providers`)
@@ -410,7 +399,6 @@ class App extends Component {
           "There was a problem connectig to the server getting providers.",
           err
         );
-        console.log("Handling the error here.", err);
       });
     fetch(`${API_ENDPOINT}/dishes`)
       .then((res) => {
@@ -426,7 +414,6 @@ class App extends Component {
           "There was a problem connectig to the server getting restaurants.",
           err
         );
-        console.log("Handling the error here.", err);
       });
 
     fetch(`${API_ENDPOINT}/orders`)
@@ -440,7 +427,6 @@ class App extends Component {
       .then((orders) => this.setState({ orders }))
       .catch((err) => {
         alert("There was a problem connectig to the server.", err);
-        console.log("Handling the error here.", err);
       });
   }
 
