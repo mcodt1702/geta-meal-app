@@ -11,11 +11,10 @@ export default class Nation extends React.Component {
     console.log(nation);
 
     if (nation === "American") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -28,7 +27,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -46,11 +45,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Chinese") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -63,7 +61,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -80,11 +78,10 @@ export default class Nation extends React.Component {
       }
     }
     if (nation === "French") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -97,7 +94,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -114,11 +111,10 @@ export default class Nation extends React.Component {
       }
     }
     if (nation === "FastFood") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -131,7 +127,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -149,11 +145,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Greek") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -166,7 +161,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -182,13 +177,11 @@ export default class Nation extends React.Component {
         );
       }
     }
-
     if (nation === "Indian") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -201,7 +194,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -218,11 +211,10 @@ export default class Nation extends React.Component {
       }
     }
     if (nation === "Italian") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -235,7 +227,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -251,13 +243,11 @@ export default class Nation extends React.Component {
         );
       }
     }
-
     if (nation === "Japanese") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -270,7 +260,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -288,11 +278,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Mexican") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -305,7 +294,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -321,13 +310,11 @@ export default class Nation extends React.Component {
         );
       }
     }
-
     if (nation === "MEastern") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -340,7 +327,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -358,11 +345,10 @@ export default class Nation extends React.Component {
     }
 
     if (nation === "Thai") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -375,7 +361,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));
@@ -392,11 +378,10 @@ export default class Nation extends React.Component {
       }
     }
     if (nation === "Other") {
-      if (
-        this.context.restaurants.filter(
-          (list) => (list.type === nation.length) === 0
-        )
-      ) {
+      const wehaveit = this.context.restaurants.filter(
+        (list) => list.type === nation
+      );
+      if (wehaveit.length === 0) {
         return (
           <div className="notInArea">
             <h1>Sorry we don't have that type of food in your area.</h1>
@@ -409,7 +394,7 @@ export default class Nation extends React.Component {
         const restaurantList = this.context.restaurants
           .filter((list) => list.type === nation)
           .map((list2) => (
-            <div key={list2.id}>
+            <div key={list2.id} className="nation">
               <Link to={`/vendor/${list2.id}`}>{list2.name}</Link>
             </div>
           ));

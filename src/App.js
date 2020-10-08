@@ -297,7 +297,7 @@ class App extends Component {
     },
     handleRegistrationSuccess: (user) => {
       const { history } = this.props;
-      history.push("/login");
+      history.push("/loginRest");
     },
 
     handleLoginSuccess: (type, id) => {
@@ -409,8 +409,8 @@ class App extends Component {
         <div>
           <Route path={"/"} component={Header}></Route>
           <Route exact path={"/"} component={LandingPage}></Route>
-          <Route exact path={"/food"} component={Type}></Route>
-          <Route exact path={"/food"} component={Main}></Route>
+          <PrivateRoute exact path={"/food"} component={Type}></PrivateRoute>
+          <PrivateRoute exact path={"/food"} component={Main}></PrivateRoute>
           <Route path={"/topRated"} component={TopPage}></Route>
           <Route path={"/deals"} component={DealsPage}></Route>
           <Route path={"/login"} component={Login}></Route>

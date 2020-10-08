@@ -53,10 +53,10 @@ export default class renderUser extends React.Component {
     const password = this.state.password.value.trim();
     if (password.length === 0) {
       return "Password is required";
-    } else if (/^[A-Za-z]\w{7,14}$/.test(password)) {
+    } else if (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(password)) {
       return true;
     }
-    return "Use a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter!       ";
+    return "Use a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter!";
   }
 
   phoneUpdate(phone) {

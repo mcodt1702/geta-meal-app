@@ -59,3 +59,7 @@
 .dropdown li ul {
   width: 300px;
 }
+
+.nation a {
+  color: black;
+}
