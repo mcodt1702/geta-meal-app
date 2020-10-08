@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center bottom;
-  height: 70vh;
+  height: 55vh;
   text-align: center;
 }
 .landing h1 {
@@ -19,7 +19,8 @@
   margin-top: 20px;
   height: 5vh;
   color: antiquewhite;
-  padding: 5vh;
+  padding: 10px;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 770px) {
@@ -28,7 +29,8 @@
   }
 
   #gStarted {
-    height: 3vh;
+    height: 7vh;
+    padding: 20px;
   }
 
   .landing h1 {

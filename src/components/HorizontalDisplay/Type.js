@@ -13,42 +13,44 @@ export default class Type extends React.Component {
         <div className="dropdown">
           <button className="dropbtn">CHOOSE A TYPE OF FOOD</button>
           <div className="dropdown-content">
-            <li>
-              <Link to="/type/American">AMERICAN</Link>
-            </li>
-            <li>
-              <Link to="/type/Chinese">CHINESE</Link>
-            </li>
-            <li>
-              <Link to="/type/French">FRENCH</Link>
-            </li>
-            <li>
-              <Link to="/type/FastFood">FAST FOOD</Link>
-            </li>
-            <li>
-              <Link to="/type/Greek">GREEK</Link>
-            </li>
-            <li>
-              <Link to="/type/Indian">INDIAN</Link>
-            </li>
-            <li>
-              <Link to="/type/Italian">ITALIAN</Link>
-            </li>
-            <li>
-              <Link to="/type/Japanese">JAPANESE</Link>
-            </li>
-            <li>
-              <Link to="/type/Mexican">MEXICAN</Link>
-            </li>
-            <li>
-              <Link to="/type/MEastern">MIDDLE EASTERN</Link>
-            </li>
-            <li>
-              <Link to="/type/Thai">THAI</Link>
-            </li>
-            <li>
-              <Link to="/type/Other">OTHER</Link>
-            </li>
+            <ul>
+              <li>
+                <Link to="/type/American">AMERICAN</Link>
+              </li>
+              <li>
+                <Link to="/type/Chinese">CHINESE</Link>
+              </li>
+              <li>
+                <Link to="/type/French">FRENCH</Link>
+              </li>
+              <li>
+                <Link to="/type/FastFood">FAST FOOD</Link>
+              </li>
+              <li>
+                <Link to="/type/Greek">GREEK</Link>
+              </li>
+              <li>
+                <Link to="/type/Indian">INDIAN</Link>
+              </li>
+              <li>
+                <Link to="/type/Italian">ITALIAN</Link>
+              </li>
+              <li>
+                <Link to="/type/Japanese">JAPANESE</Link>
+              </li>
+              <li>
+                <Link to="/type/Mexican">MEXICAN</Link>
+              </li>
+              <li>
+                <Link to="/type/MEastern">MIDDLE EASTERN</Link>
+              </li>
+              <li>
+                <Link to="/type/Thai">THAI</Link>
+              </li>
+              <li>
+                <Link to="/type/Other">OTHER</Link>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="table">

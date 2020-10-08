@@ -8,4 +8,5 @@
 #topbox {
   background-color: aliceblue;
   width: 50%;
+  border-radius: 10px;
 }

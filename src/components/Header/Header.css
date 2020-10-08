@@ -5,20 +5,23 @@
   height: 20vh;
   align-items: center;
   font-size: medium;
-}
-
-header a {
   color: white;
-  font-size: medium;
-  text-decoration: none;
-}
-header a:hover {
-  color: red;
 }
 
+.restLogin,
+.register {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
 .logo {
   font-family: "Audiowide", cursive;
   font-size: 20px;
+
+  color: white;
 }
 @media screen and (min-width: 770px) {
   .logo {
@@ -28,7 +31,6 @@ header a:hover {
 
   header a {
     color: white;
-    font-size: xx-large;
     text-decoration: none;
     margin: 20px;
   }
@@ -36,5 +38,32 @@ header a:hover {
   .Header__not-logged-in,
   .Header__logged-in {
     color: white;
+  }
+
+  .Header__not-logged-in {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .restLogin,
+  .register {
+    background-color: purple;
+    border-radius: 10px;
+    margin-top: 20px;
+    height: 2vh;
+    color: antiquewhite;
+    padding: 5px;
+    text-align: center;
+    font-size: small;
+    display: flex;
+    align-items: center;
+  }
+
+  .restLogin a:hover {
+    color: yellow;
+  }
+
+  .register a:hover {
+    color: yellow;
   }
 }

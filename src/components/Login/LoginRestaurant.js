@@ -22,7 +22,7 @@ export default class LoginForm extends Component {
     AuthApiService.postLogin({
       email: user_name.value,
       password: password.value,
-      user_type: "consumer",
+      user_type: user_type.value,
     })
       .then((res) => {
         user_name.value = "";
@@ -42,21 +42,21 @@ export default class LoginForm extends Component {
         <h2>Login</h2>
         <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
           <div role="alert">{error && <p className="red">{error}</p>}</div>
-          <p>
-            Demo Customer - <br />
-            username: joe@pizza.com <br />
-            password: P@ssword1234
-          </p>
 
+          <p>
+            Demo Restaurant - <br />
+            username: toast@brew.com <br />
+            password: tac44
+          </p>
           <p>
             <input
               type="radio"
               name="user_type"
-              value="consumer"
-              id="user_type_user"
+              value="provider"
+              id="user_type_rest"
               defaultChecked
             />
-            <label htmlFor="user_type_user">User</label>
+            <label htmlFor="user_type_rest">Restaurant</label>
           </p>
           <div className="user_name">
             <label htmlFor="LoginForm__user_name">User name</label>

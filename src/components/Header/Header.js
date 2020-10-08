@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import TokenService from "../../services/token-service";
-import { Hyph } from "../../utilities/utilities";
+
 import Context from "../../Context";
 
 export default class Header extends React.Component {
@@ -18,10 +18,6 @@ export default class Header extends React.Component {
         <Link onClick={this.handleLogoutClick} to="/">
           Logout
         </Link>
-        {/* {<Hyph />} */}
-        {/* <Link to={`/restaurant/dashboard/${this.context.currentUserId}`}>
-          Account
-        </Link> */}
       </div>
     );
   }
@@ -29,9 +25,12 @@ export default class Header extends React.Component {
   renderLoginLink() {
     return (
       <div className="Header__not-logged-in">
-        <Link to="/registration">Register</Link>
-        {<Hyph />}
-        <Link to="/login">Log in</Link>
+        <div className="restLogin">
+          <Link to="/loginRest">Restaurants Log in here</Link>{" "}
+        </div>
+        <div className="register">
+          <Link to="/registration">Register</Link>
+        </div>
       </div>
     );
   }
@@ -40,19 +39,21 @@ export default class Header extends React.Component {
     return (
       <header className="headerstyling">
         <div className="hambu">
-          <a id="nav-toggle" href="./">
+          <Link id="hambu" to="/food">
             &#9776;
-          </a>
+          </Link>
         </div>
 
-        <Link className="logo" to="/">
+        <Link className="logo" to="/food">
           Geta-Meal
         </Link>
-        <nav>
-          {TokenService.hasAuthToken()
-            ? this.renderLogoutLink()
-            : this.renderLoginLink()}
-        </nav>
+        <div className="nav">
+          <div className="restlogin">
+            {TokenService.hasAuthToken()
+              ? this.renderLogoutLink()
+              : this.renderLoginLink()}
+          </div>
+        </div>
       </header>
     );
   }

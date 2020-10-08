@@ -4,6 +4,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   height: 50vh;
+  margin: 0px;
 }
 
 .container2 {

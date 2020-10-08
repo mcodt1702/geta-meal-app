@@ -20,7 +20,7 @@ import Orders from "./components/Orders/Orders";
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 import CompleteOrder from "./components/Cart/CompleteOrder";
 import Nation from "./components/HorizontalDisplay/Nation";
-
+import LoginRestaurant from "./components/Login/LoginRestaurant";
 import DealsPage from "./components/Deals/DealsPage";
 import Config from "./config";
 
@@ -309,7 +309,7 @@ class App extends Component {
       if (type.value === "provider") {
         window.location.replace(`/restaurant/dashboard/${id}`);
       } else {
-        window.location.replace("/");
+        window.location.replace("/food");
       }
     },
   };
@@ -414,6 +414,7 @@ class App extends Component {
           <Route path={"/topRated"} component={TopPage}></Route>
           <Route path={"/deals"} component={DealsPage}></Route>
           <Route path={"/login"} component={Login}></Route>
+          <Route path={"/loginRest"} component={LoginRestaurant}></Route>
           <Route path={"/registration"} component={Registration}></Route>
           <Route exact path={"/register/user"} component={RegisterUser}></Route>
           <Route

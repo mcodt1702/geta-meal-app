@@ -16,9 +16,7 @@ export default class LandingPage extends React.Component {
           <div id="gStarted">GET STARTED!</div>
         </Link>
         <Link to={"/login"}>
-          <div id="gStarted">
-            <p>GETA-Meal!</p>I already have an account
-          </div>
+          <div id="gStarted">Sign In</div>
         </Link>
       </div>
     );
