@@ -9,10 +9,15 @@ Visit Site: [Live Link](https://geta-meal-app.vercel.app/)
 
 Client Repo: [Live Link](https://github.com/mcodt1702/geta-meal-app)
 
-## API Endpoints
+# API Endpoints
 
-- /login
-  - POST - user/password - logs in user
+### Open Endpoints
+
+- Login:
+  - POST /login
+
+### Protected Endpoints
+
 - /orderItems
   - POST -
   - GET -
