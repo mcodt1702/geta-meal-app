@@ -57,10 +57,6 @@ export default class Dashboard extends Component {
         </div>
       ));
 
-    // const foodItems = this.context.order_items
-    //   .filter((oi) => oi.order.id === orders.id)
-    //   .map((items) => <div></div>);
-
     return (
       <div id="rest">
         <h2>Account Profile</h2>

@@ -19,8 +19,8 @@ export default class Cart extends Component {
         <div className="listOfItems">
           <ul>
             {cartItems.map((items) => (
-              <li key={items.id}>
-                <div>{items.item}</div>
+              <div key={items.id}>
+                <div>{items.name}</div>
                 <div>
                   {items.price}x{items.count}
                 </div>
@@ -29,13 +29,15 @@ export default class Cart extends Component {
                 >
                   Remove item
                 </button>
-              </li>
+              </div>
             ))}
           </ul>
         </div>
         {cartItems.length !== 0 && (
           <div className="total">
-            Total= ${cartItems.reduce((a, c) => a + c.price * c.count, 0)}
+            <h1>
+              Total= ${cartItems.reduce((a, c) => a + c.price * c.count, 0)}
+            </h1>
           </div>
         )}
       </>

@@ -16,7 +16,7 @@ import Restaurant from "./components/Restaurant/Restaurant";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AddMenuItems from "./components/Dashboard/AddMenuItems";
 import TokenService from "./services/token-service";
-import Orders from "./components/Orders/Orders";
+
 import ModifyMenuItem from "./components/Dashboard/ModifyMenuItem";
 import CompleteOrder from "./components/Cart/CompleteOrder";
 import Nation from "./components/HorizontalDisplay/Nation";
@@ -306,6 +306,7 @@ class App extends Component {
         description: e.target.description.value,
         price: e.target.price.value,
       };
+      console.log(modifiedItem);
 
       history.push("/restaurant/dashboard");
     },
@@ -469,11 +470,7 @@ class App extends Component {
             path={"/restaurant/dashboard/modify/:id"}
             component={ModifyMenuItem}
           ></PrivateRoute>
-          <PrivateRoute
-            exact
-            path={"/restaurant/dashboard/orders"}
-            component={Orders}
-          ></PrivateRoute>
+
           <Route exact path={"/type/:nation"} component={Nation}></Route>
           <Route exact path={"/vendor/:id"} component={Restaurant}></Route>
           <PrivateRoute

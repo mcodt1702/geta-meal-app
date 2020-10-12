@@ -15,13 +15,16 @@ export default class Restaurant extends Component {
       .filter((rest) => rest.id === parseInt(id))
       .map((rest) => (
         <div className="restident" key={id}>
-          <h3>Menu for {rest.name}</h3>
+          <u>
+            <h3>Menu for {rest.name}</h3>
+          </u>
           <ul key={id}>
             {" "}
             <li>{rest.address}</li>
             <li>{rest.phone}</li>
             <li>{rest.type}</li>
           </ul>
+          <hr></hr>
         </div>
       ));
 
@@ -29,10 +32,10 @@ export default class Restaurant extends Component {
     const menuItems = menus
       .filter((item) => item.provider_id === parseInt(id))
       .map((food) => (
-        <div key={food.id}>
-          <li>{food.name}</li>
-          <li>{food.description}</li>
-          <li>{food.price} </li>
+        <div className="listdishes" key={food.id}>
+          <li>Name: {food.name}</li>
+          <li>Description: {food.description}</li>
+          <li>Price: ${food.price} </li>
           <button onClick={() => this.context.addItemToCart(food)}>
             Add Item to Order
           </button>

@@ -4,7 +4,7 @@ export default class PleaseLogIn extends Component {
   render() {
     return (
       <div>
-        <h2>Pleaes login as a consumer to place an oder.</h2>
+        <h2>Please login as a consumer to place an order.</h2>
       </div>
     );
   }

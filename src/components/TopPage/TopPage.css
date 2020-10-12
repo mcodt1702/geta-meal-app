@@ -1,10 +1,6 @@
-#topPage h2 {
-  text-align: center;
-  color: black;
-}
-
 #topPage {
   background-color: white;
+  margin-right: 15px;
 }
 
 #topPage ul {

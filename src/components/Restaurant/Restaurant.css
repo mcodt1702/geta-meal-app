@@ -1,4 +1,53 @@
 #rest {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
+  margin-left: 10%;
+}
+
+#rest ul li {
+  list-style: none;
+}
+
+#rest button {
+  margin: 20px;
+  margin-left: 5px;
+  background-color: purple;
+  color: white;
+}
+
+#rest hr {
+  width: 40vh;
+  margin-bottom: 4vh;
+  color: purple;
+}
+.listdishes li {
+  margin-left: 15%;
+  list-style: none;
+}
+
+.listdishes button {
+  margin-bottom: 10vh;
+  margin-left: 15%;
+  margin-top: 2vh;
+}
+
+.listOfItems {
+  margin-left: 15%;
+  list-style: none;
+}
+
+.total {
+  margin-left: 5%;
+}
+
+.restident h3,
+u {
+  color: purple;
+}
+
+@media screen and (min-width: 770px) {
+  #rest hr {
+    width: 180vh;
+  }
 }
