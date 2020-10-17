@@ -4,7 +4,7 @@ import Context from "../../Context";
 export default class Cart extends Component {
   static contextType = Context;
   render() {
-    const { cartItems } = this.context;
+    const { cartItems = [] } = this.context || [];
 
     return (
       <>

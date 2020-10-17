@@ -5,8 +5,11 @@ import "./Dashboard.css";
 
 export default class Dashboard extends Component {
   static contextType = Context;
+  static defaultProps = {
+    match: { params: { id: 0 } },
+  };
   render() {
-    let { restaurants } = this.context;
+    let { restaurants = [] } = this.context || [];
     const id = parseInt(this.props.match.params.id);
 
     const venue = restaurants
@@ -22,7 +25,7 @@ export default class Dashboard extends Component {
           </ul>
         </div>
       ));
-    let menus = this.context.menu;
+    let menus = this.context ? this.context.menu : [];
 
     const menuItems = menus
       .filter((item) => item.provider_id === parseInt(id))
@@ -40,7 +43,8 @@ export default class Dashboard extends Component {
         </div>
       ));
 
-    const pastOrders = this.context.orders
+    let pastOrders = this.context ? this.context.orders : [];
+    pastOrders = pastOrders
       .filter((order) => order.provider_id === id)
       .map((orders) => (
         <div key={orders.id} className="ordersList">

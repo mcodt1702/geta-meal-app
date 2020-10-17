@@ -10,10 +10,16 @@ import Context from "../../Context";
 export default class CompleteOrder extends Component {
   static contextType = Context;
 
+  static defaultProps = {
+    match: { params: { id: 0 } },
+  };
+
   render() {
     const { id } = this.props.match.params;
 
-    const orderplaced = this.context.orderItems
+    const { orderItems = [] } = this.context || [];
+
+    const orderplaced = orderItems
       .filter((items) => items.order_id === id)
       .map((list) => (
         <div key={id}>

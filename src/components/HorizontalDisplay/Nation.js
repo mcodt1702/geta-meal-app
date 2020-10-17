@@ -5,14 +5,15 @@ import Context from "../../Context";
 
 export default class Nation extends React.Component {
   static contextType = Context;
-
+  static defaultProps = {
+    match: { params: { nation: "American" } },
+  };
   render() {
     const { nation } = this.props.match.params;
 
     if (nation === "American") {
-      const wehaveit = this.context.restaurants.filter(
-        (list) => list.type === nation
-      );
+      const { restaurants = [] } = this.context || [];
+      const wehaveit = restaurants.filter((list) => list.type === nation);
       if (wehaveit.length === 0) {
         return (
           <div className="notInArea">

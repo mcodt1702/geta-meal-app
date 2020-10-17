@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 export default class TopPage extends Component {
   static contextType = Context;
   render() {
+    let { restaurants = [] } = this.context || [];
     return (
       <div id="topPage">
         <h2>TOP RATED</h2>
         <ul>
-          {this.context.restaurants.map((rest) => (
+          {restaurants.map((rest) => (
             <li key={rest.id}>
               <div className="prov">
                 <Link to={`vendor/${rest.id}`}>

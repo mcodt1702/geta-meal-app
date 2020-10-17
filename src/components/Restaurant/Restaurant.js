@@ -6,9 +6,11 @@ import "./Restaurant.css";
 
 export default class Restaurant extends Component {
   static contextType = Context;
-
+  static defaultProps = {
+    match: { params: { id: 0 } },
+  };
   render() {
-    let { restaurants } = this.context;
+    let { restaurants = [] } = this.context || [];
     const id = parseInt(this.props.match.params.id);
 
     const venue = restaurants
@@ -28,7 +30,7 @@ export default class Restaurant extends Component {
         </div>
       ));
 
-    let menus = this.context.menu;
+    let menus = this.context ? this.context.menu : [];
     const menuItems = menus
       .filter((item) => item.provider_id === parseInt(id))
       .map((food) => (
