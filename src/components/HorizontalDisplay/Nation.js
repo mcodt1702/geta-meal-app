@@ -34,7 +34,7 @@ export default class Nation extends React.Component {
 
         return (
           <div className="selectedFood">
-            <h1>Hello here is a list of you prefered restaurants</h1>
+            <h1>Hello here is a list of your prefered restaurants</h1>
             {restaurantList}
             <Link to={"/food"}>
               <button>Go Back to Main Page</button>
