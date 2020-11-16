@@ -312,19 +312,6 @@ class App extends Component {
     },
 
     deleteItemtoMenu: (id) => {
-      // fetch(
-      //   `${API_ENDPOINT}/dishes/${id}`,
-
-      //   {
-      //     method: "post",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       authorization: `bearer ${TokenService.getAuthToken()}`,
-      //     },
-      //     body: JSON.stringify(id),
-      //   }
-      // );
-
       this.setState({
         menu: this.state.menu.filter((item) => item.id !== id),
       });

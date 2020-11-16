@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TokenService from "../../services/token-service";
 import { Button, Input } from "../../utilities/utilities";
 import Context from "../../Context";
-import React, { Component } from "react";
+
 import AuthApiService from "../../services/auth-api-service";
 
 export default class LoginForm extends Component {
